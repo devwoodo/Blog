@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>네트워크 게임 튜토리얼 season1</title>
+</head>
+<body>
+    <ol>
+        <h1>
+            <li>winsock의 개념</li>
+        </h1>
+        <p>
+            <a href="http://www.gamedevforever.com/39">네트워크 게임 튜터리얼 1 - 워밍업</a>
+            <ol>
+                <li>winsock의 역사</li><br>
+                <li>winsock의 종류</li>
+                <p>
+                    <ul>
+                        <li>Window message select(WSAAsyncSelect) </li>
+                        <li>Kernel event select(WSAEventSelect)</li>
+                        <li>Overlapped I/O(Overlapped)</li>
+                        <li>Overlapped I/O + IOCP (IOCP)</li>
+                    </ul>
+                </p>
+                <li>Non blocking 개념</li><br>
+                <li>Todo</li>
+                <p>
+                    <ul>
+                        <li>Unix network programming, W. Richard Stevens</li>
+                        <li>MFC</li>
+                        <li>소스 분석</li>
+                    </ul>
+                </p>
+            </ol>
+            <br>
+            출처: <a href="http://www.gamedevforever.com/39">http://www.gamedevforever.com/39</a>, <a href="http://rhea.pe.kr/">http://rhea.pe.kr/</a>
+        </p>
+        <h1>
+            <li>Network game architecture</li>
+        </h1>
+        <p>
+            <a href="http://www.gamedevforever.com/62">네트워크 게임 튜터리얼 2 - 아키텍트 돋는 첫걸음</a>
+            <ol>
+                <li>Network architecture</li>
+                <p>
+                    <ul>
+                        <li>C/S</li>
+                        <li>P2P</li>
+                        <p>
+                            Player 수 증가에 따른 복잡도 증가(O(n*n)), NAT, session migration 등 어려운 문제가 존재.
+                        </p>
+                        <li>C/S vs P2P</li>
+                    </ul>
+                </p>
+                <li>Network architecture case analysis</li>
+                <p>
+                    <ul>
+                        <li>packet analysis tools</li>
+                        <ul>
+                            <li>netstat</li>
+                            <li>TCPView</li>
+                            <li>WireShark</li>
+                        </ul>
+                        <li>C/S example: poker game</li>
+                        <p>
+                            여러대의 서버가 sign in process, game lobby, in-game 등 역할을 나눠 각 process를 담당. 이외에
+                            <ul>
+                                <li>서버간 통신을 담당하는 서버</li>
+                                <li>어떤 서버로 연결할지 알려주는 서버</li>
+                            </ul>
+                            등이 필요.
+                        </p>
+                        <li>P2P example: Battle.net</li>
+                        <p>
+                            <ul>
+                                <li>세션 마이그레이션: P2P 연결에서 host가 나갔을 때, host를 옮기는 과정.</li>
+                                <li>유저 간 정보 교환은 UDP로.</li>
+                            </ul>
+                        </p>
+                    </ul>
+                </p>
+                <li>Hole punching</li>
+                <p>
+                    NAT(Network Address Translator=공유기) 뒤에 있는 peer의 IP는 실제 IP가 아니기 때문에 server가 될 수 없음. 이를 해결하기 위해 hole punching 기법 사용.
+                </p>
+                <li>To do</li>
+                <p>
+                    <ul>
+                        <li>netstat research</li>
+                        <li>TCPView research</li>
+                        <li>WireShark research</li>
+                        <li>hole punching research</li>
+                        <p>참고: <a href="http://gamedevforever.com/47">실전에서 알아보는 홀펀칭 방법</a></p>
+                    </ul>
+                </p>
+            </ol>
+            출처: <a href="http://www.gamedevforever.com/39">http://www.gamedevforever.com/39</a>, <a href="http://rhea.pe.kr/">http://rhea.pe.kr/</a>
+        </p>
+        <h1>
+            <li></li>
+        </h1>
+        <p>
+
+
+
+
+        </p>
+        <h1>
+            <li></li>
+        </h1>
+        <p></p>
+        <h1>
+            <li></li>
+        </h1>
+        <p></p>
+        <h1>
+            <li></li>
+        </h1>
+        <p></p>
+    </ol>
+</body>
+</html>
