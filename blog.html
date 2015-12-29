@@ -35,6 +35,8 @@
             <br>
             출처: <a href="http://www.gamedevforever.com/39">http://www.gamedevforever.com/39</a>, <a href="http://rhea.pe.kr/">http://rhea.pe.kr/</a>
         </p>
+
+
         <h1>
             <li>Network game architecture</li>
         </h1>
@@ -96,23 +98,112 @@
             </ol>
             출처: <a href="http://www.gamedevforever.com/39">http://www.gamedevforever.com/39</a>, <a href="http://rhea.pe.kr/">http://rhea.pe.kr/</a>
         </p>
+
+
         <h1>
-            <li></li>
+            <li>DB와 server 연결하기</li>
         </h1>
         <p>
-
-
-
-
+            <a href="http://www.gamedevforever.com/92">네트워크 게임 튜터리얼 3 - 데이터베이스 그리고 C/S</a><br><br>
+            DB에 들어가는 내용
+            <ul>
+                <li>유저 관련 정보: 가입, 탈퇴, 로그인, 친구, 기타등등..</li>
+                <li>게임 컨텐츠: 레벨, 경험치, 아이템, 공격력...</li>
+                <li>인벤토리: 아이템, 수량, 돈...</li>
+                <li>몬스터 정보: 경험치, 레벨, 공격력..</li>
+                <li>사용자 패턴 정보</li>
+                <li>그 외 '정보'라 할만한 모든 것</li>
+            </ul>
+            <pre>
+         DB
+웹서버 -------- 게임서버    DB가 웹서버와 게임 서버를 연결하는 역할
+            </pre>
+        <ol>
+            <li>DBMS 기초</li>
+            <p>
+                <ul>
+                    <li><a href="http://www.zdnet.co.kr/news/news_view.asp?artice_id=00000039130809">[MFC로 구현하는 DB 프로그래밍] ① 로컬 제트엔진 DAO</a></li>
+                    <li><a href="http://www.zdnet.co.kr/news/news_view.asp?artice_id=00000039131033">[MFC로 구현하는 DB 프로그래밍] ② DB의 다리 ODBC</a></li>
+                    <li><a href="http://www.zdnet.co.kr/news/news_view.asp?artice_id=00000039131490">[MFC로 구현하는 DB 프로그래밍] ③ 모든 것은 OLE로</a></li>
+                </ul>
+            </p>
+            <li>Winsock 과 ADO를 사용한 채팅 시스템</li>
+            <ol>
+                <li>DB 설계</li>
+                <li>DB를 프로그램에 연결</li>
+                <li>packet 설계</li>
+                <p>
+                    패킷 검출용 CGeneric class를 만들고 다른 패킷들은 이 클래스를 상속. DWORD head를 통해 패킷의 종류를 판별.
+                    실제로 패킷을 전송 시엔 CDataMessage라는 버퍼용 클래스로 패킷을 감싸고 패킷의 크기는 버퍼클래스의 앞부분  4비트를 통해 표시.
+                </p>
+            </ol>
+            <li>To do</li>
+            <ul>
+                <li>소스코드 분석</li>
+                <li>MySQL 문법 확인</li>
+            </ul>
+        </ol>
+        출처: <a href="http://www.gamedevforever.com/39">http://www.gamedevforever.com/39</a>, <a href="http://rhea.pe.kr/">http://rhea.pe.kr/</a>
         </p>
+
+
+
+        <h1>
+            <li>로비 서버 만들기 -들어가기에 앞서: 객체의 생명주기, serialization, packet generator 등</li>
+        </h1>
+        <p>
+          <a href="http://www.gamedevforever.com/128">네트워크 게임 튜터리얼 4 - 로비, 그리고 할말이 많다</a>
+          <ol>
+            <li>C/S의 생명주기</li>
+            <p>
+              <img src="http://cfile1.uf.tistory.com/image/1547323F4F54FCBE0D388F" alt="">출처: http://www.gamedevforever.com/<br>
+              게임 서버는 Patch server, load balance server, lobby server, game server 등 분산 서버 구조를 이루고 있는데,
+              필요한 객체 생성 및 초기화 등은 이를 담당하는 서버에서 처리를 해야하고 lobby server는 lobby,
+              game server는 game 등 자신이 담당한 역할에 집중할 수 있게 설계해야함.
+
+            </p>
+            <li>Lobby server 제작</li>
+            <p>
+              <ul>
+                <li>Serialization</li>
+                <p>
+                  <ul>
+                    <li>XML</li>
+                    <p>
+                      텍스트 기반으로 이뤄진 자료구조. 사람이 읽기 쉽지만 너무 커서 게임 서버에서는 잘 쓰지 않음. 멀티플랫폼 사용 가능
+                    </p>
+                    <li>Protocol Buffer</li>
+                    <p>
+                      구글에서 만든 serialization protocol. 몇몇 기본 자료형과 string 만 보낼 수 있는 등 제약이 있음
+                    </p>
+                    <li>JSON</li>
+                    <p>
+                      Java script 용으로 나온 경량 데이터 교환 포맷. 가벼움. 멀티 플랫폼 가능.
+                    </p>
+                    <li>boost::serialization</li>
+                    <p>
+                      강력한 기능: STL collection을 그대로 serialization. C++ 단일 플랫폼에 대해 사용 가능.
+                    </p>
+                  </ul>
+                </p>
+                <li>Packet generator 패킷 생성기</li>
+                <p>
+                  IDL 컴파일러: <i><b>filename</b></i>.idl 파일을 만들고 정해진 형식에 따라 필요한 함수를 작성해놓으면 이를 바탕으로 자동으로 소스 코드를 만들어주는 외부 컴파일러.
+                  프라우드넷 IDL 컴파일러 등
+                </p>
+              </ul>
+            </p>
+          </ol>
+          출처: <a href="http://www.gamedevforever.com/39">http://www.gamedevforever.com/39</a>, <a href="http://rhea.pe.kr/">http://rhea.pe.kr/</a>
+        </p>
+
+
         <h1>
             <li></li>
         </h1>
         <p></p>
-        <h1>
-            <li></li>
-        </h1>
-        <p></p>
+
+
         <h1>
             <li></li>
         </h1>
