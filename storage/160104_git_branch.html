@@ -1,0 +1,37 @@
+
+  <h4>Local branch</h4>
+  <p>
+    <ul>
+      <li>local branch 이름 수정</li>
+      <p>
+        <code>git branch -m <b><i>old_branch</i></b> <b><i>new_branch</i></b></code>
+      </p>
+      <li>remote branch를 local branch로 가져온 후 track</li>
+      <p>
+        <code>git checkout -b <b><i>new_local_branch</i></b> <b><i>remote_branch_path</i></b></code>
+      </p>
+      <li>모든 local branch들을 한번에 remote repository에 업로드</li>
+      <p>
+        <b>주의! remote repository가 지저분해질 수 있음</b>
+        git push --all
+        git push --tags
+        git push 로는 branch만 올라갈 뿐 tag는 올라가지 않음. 따라서 tag는 따로 올려줘야 함.
+
+        <a href="http://stackoverflow.com/questions/4885999/with-github-how-do-i-push-all-branches-when-adding-an-existing-repo"></a>
+      </p>
+    </ul>
+  </p>
+  <h4>Remote branch</h4>
+  <p>
+    <ul>
+      <li>remote branch 삭제</li>
+      <p>
+        git push origin <b><i>&#58old_branch</i></b> or git push origin --delete <b><i>romote_branch</i></b>  // remote branch 삭제<br>
+        git fetch --all --prune   // 각 local machine에서 실행. to get rid of obsolete tracking branch 제거
+
+        remote branch를 삭제해도 다른 local machine들에서는 여전히 삭제된 remote branch를 tracking 하고 있는 상태. obsolete tracking을 막기 위해 다른 local machine에서 실행 <br>
+        <blockq>git remote rm <b><i>remote_branch </i></b> 랑 차이점..? 이건 remote branch가 삭제됐다고 자동으로 알려주는건가? </blockq>
+
+      </p>
+    </ul>
+  </p>
