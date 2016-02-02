@@ -3,9 +3,14 @@
     <ul>
         <li>C++11부터 string stream과 file stream이 rvalue와 move semantic을 지원.</li>
     </ul>
-    <a href="#15_1">Background of I/O streams</a>
+    <a id="top">순서 </a>    
+    <ol>
+        <li><a href="#15_1">Background of I/O streams</a></li>
+        <li><a href="#15_2">Fundamental stream classes and objects</a></li>
+    </ol>
 </p>
-<br><h4><a name="15_1">Background of I/O streams</a> </h4>
+<br>
+<h4><a id="15_1">Background of I/O streams</a> </h4>
 <ol>
     <li>stream objects</li>
     <p>
@@ -30,7 +35,35 @@
         stream을 조작하기 위해 사용되는 특수한 object. input을 읽어들이는 방식이나 output이 출력되는 방식을 바꾸는 유일한 방법임.
     </p>
     <li>a simple example</li>
-    
+</ol>
+<br>
+<h4><a id="15_2">Fundamental stream classes and objects</a></h4>
+<ol>
+    <li>Classes and class hierarchy</li>
+    <p>
+        //rev header file including structure
+        <br>
+        IOStream library는 철저히 각자의 책임을 분리하는 방향으로 설계됨. <i>basic_ios</i>를
+        상속받는 클래스들은 오직 formatting data만을 처리함. characters의 읽기와 쓰기는 
+        <i>basic_ios</i>의 subobjects인 stream buffers에 의해 수행됨. 
+    </p>
+     
+    <li>Global stream objects</li>
+    <ul>
+        <li>cin - istream</li>
+        <li>cout - ostream</li>
+        <li>cerr - ostream</li>
+        <li>clog - ostream</li>
+    </ul>
+    <li>Header files</li>
+    <p>
+        application programmer는 &ltiosfwd&gt를 include하는 것으로 충분하며, 
+        input, output functions을 사용하기 위해 필요에 따락 각각 
+        &ltistream&gt과 &ltostream&gt을 include한다. <br>
+        일반적으로 헤더 파일에는 꼭 필요한 파일만 include 한다. 특히 헤더파일에는 &ltiosfwd&gt만
+        include하고, 이에 대응되는 implementation 파일에 헤더 파일을 include해서 완전한 정의를 
+        하도록 한다.  
+    </p>
 </ol>
 
 
