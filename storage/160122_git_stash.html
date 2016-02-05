@@ -1,0 +1,25 @@
+<h4>descriptions</h4>
+<p>
+    작업 도중 다른 브랜치의 작업을 해야 하는데 작업한 변경 사항을 commit을 하고 싶지는 않을 때, 지금까지 작업한 변경 사항을 잠시 저장하는 기능.
+</p>
+
+<h4>사용법</h4>
+<p>
+    지금까지의 작업을 저장 : <span style="background:#99ff99">git add</span> 후 <span style="background:#99ff99">git stash</span><br>
+    가장 최근에 stash 된 내용을 불러옴 : <span style="background:#99ff99">git stash pop</span>    
+</p>
+<h4>tags</h4>
+<ul>
+    <li>list : stash 된 목록을 보여줌 </li>
+    <li>show <i>STASH_NAME</i> : 특정 stash(<i>STASH_NAME</i>)의 자세한 내용을 보여줌. </li>
+    <li>save <i>MY_STASH_NAME</i> : <i>MY_STASH_NAME</i> 이라는 태그로 작업 내용을 stash. ex) <span style="background:#99ff99">git stash save mystash</span></li>
+    <li>pop : 가장 최근에 stash된 작업본을 불러옴. 불러온 내용은 stash 목록에서 삭제됨.</li>
+    <li>apply <i>STASH_NAME</i>|<i>stash_number</i> : stash 목록에서 지정한 작업본을 불러옴. <span style="background:#99ff99">pop</span>과는 달리 원하는 작업본을 지정하여 불러올 수 있으며, 불러온 작업본이 삭제되지 않음.</li> ex) <span style="background:#99ff99">git stash apply <i>stash@{2}</i></span>
+    <li>drop <i>STASH_NAME</i>|<i>stash_number</i> : stash 목록에서 지정한 작업본을 삭제함. ex) <span style="background:#99ff99">git stash drop <i>MY_STASH</i></span></li>
+    <li>clear : stash 목록을 모두 삭제함.</li>
+</ul>
+<h4>reference</h4>
+<ul>
+    <li><a href="https://git-scm.com/book/ko/v1/Git-%EB%8F%84%EA%B5%AC-Stashing">6.3 Git 도구 - Stashing |</a></li>
+    <li><a href="http://wit.nts-corp.com/2014/03/25/1153">git의 요술 책갈피, Stash 기능 소개</a></li>
+</ul>
