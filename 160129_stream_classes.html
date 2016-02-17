@@ -7,7 +7,8 @@
     <ol>
         <li><a href="#15_1">Background of I/O streams</a></li>
         <li><a href="#15_2">Fundamental stream classes and objects</a></li>
-        <li><a href="#15_3">//rev</a></li>
+        <li><a href="#15_3">Standard Stream Operators &lt&lt and &gt&gt</a></li>
+        <li><a href="#15_4">State of Streams</a></li>
     </ol>
 </p>
 <br>
@@ -66,8 +67,94 @@
         하도록 한다.  
     </p>
 </ol>
-<h4><a id="15_3">//rev</a></h4>
-
+<h4><a id="15_3">Standard Stream Operators &lt&lt and &gt&gt</a></h4>
+<p>
+    bit shift 연산자인 &lt&lt와 &gt&gt를 overloading 하여 입출력 연산자로 사용. void와 nullptr_t을 제외한 거의 모든 data type에 대해 overloading 되어있음.
+</p>
+<ol>
+    <li>Output Operator &lt&lt</li>
+    <p>
+        C++11에서 같은 stream object를 concurrent output에 사용하는 것이 가능하지만 이 경우 출력이 서로 섞일 수 있음.
+    </p>
+    <li>Input Overator &gt&gt</li>
+    <p>
+        두번째 param.는 non const value여야 함. <br>
+        C++11에서 같은 stream object를 concurrent input에 사용하는 것이 가능하지만 이 경우 입력이 서로 섞일 수 있음.
+    </p>
+    <li>Input/Output Of Special Types</li>
+    <ul>
+        <li>Numeric type</li>
+        <p>
+            input 읽을 때 적어도 한자리 숫자로 시작해야함. 그렇지 않으면 value는 0이 되고 failbit이 set 됨.
+        </p>
+        <li>Type bool</li>
+        <p>
+            false는 0으로, true는 1로 converting.
+        </p>
+        <li>Types char and wchar_t</li>
+        <p>
+           leading whitespace is skipped by default. whitespace까지 읽고 싶을 때는 flag _skipws_를 clear하거나 member function <span style="background:#99ff99">get()</span>을 사용. 
+        </p>
+        <li>Type char *</li>
+        <p>
+             read wordwisely. leading whitespace is skipped by default. 다음 whitespace 나 end-of-file을 만날 때까지 읽음. flag _skipws_를 통해 leading whitespace를 skip할지 정할 수 있음.
+             만약 읽을 문자의 숫자를 지정하고 싶다면 <span style="background:#99ff99">setw(..)</span> 를 사용. 
+             <blockquote style="background:#99ff99">
+                 char buffer[81];
+                 std::cin &gt&gt std::setw(81) &gt&gt buffer;
+             </blockquote>
+             
+             char * 를 사용하기보다 std::string 을 사용할 것을 권장. 이 경우 getline()을 통해 line 단위로 입력이 가능.            
+        </p>
+        <li>Type void *</li>
+        void * 를 사용 시 pointer 출력(memory address 출력)도 가능.
+        <blockquote style="background:#99ff99">
+            char * cstring = "hello";
+            std::cout &lt&lt static_cast&ltvoid *&gt(cstring) &lt&lt std::endl;    // cstring의 주소가 출력됨
+        </blockquote>
+        <li>Stream Buffers</li>
+        <p>
+            C++ I/O/ streams를 이용해서 파일을 복사하는 가장 빠른 방법. 15.14.3 참조.
+        </p> 
+        <li>User-Defined Types</li>
+        <li>Monetary and Time Values</li>
+    </ul>
+</ol>
+<h4><a id="15_4">State of Streams</a></h4>
+<p>
+    Stream에는 I/O가 성공했는지 실패했는지, (실패한 경우) 실패한 이유 등이 기록된 state가 있음.
+</p>
+<ol>
+    <li>Constants for the State of Streams</li>
+    <ul>
+        <li><i>goodbit</i></li>
+        <li><i>eofbit</i></li>
+        <li><i>failbit</i></li>
+        <li><i>badbit</i></li>
+    </ul>
+    <p>
+        flags는 class basic_ios 에 포함되어있기 때문에 class basic_istream 또는 class basic_ostream 의 모든 객체에 존재한다. 그러나 stream buffer는 아무런 state flag를 가지지 않는데, 이는 하나의 stream buffer 가 여러개의 stream 객체에서 사용될 수 있기 때문.
+    </p>
+    <li>Member Functions Accessing the State of Streams</li>
+    <p>
+        error bits는 언제나 명시적으로 clear 해줘야 함.
+    </p>
+    <li>Stream State and Boolean Conditions</li>
+    <p>
+        operator &gt&gt 의 default 설정은 leading whitespace를 skip함. 이런 whitespace skip을 막고 싶다면 stream member function의 put()과 get() 을 사용할 수 있으며, 이보다 나은 방법으로 istreambuf_iterator를 이용해 I/O 필터를 구현할 수도 있음.
+        <blockquote style="background:#99ff99">
+             if ( !(std::cin &gt&gt x)) {   // !뒤의 괄호 위치에 주의 <br>
+             // the read failed <br>
+             ... <br>
+             }             
+        </blockquote>
+    </p>
+    <li>Stream State and Exceptions</li>
+    <p>
+        backward compatibility를 위해 stream는 exception을 던지지 않는 것이 default로 설정되있지만, 모든 flag에 대해 flag가 set 되었을 때 exception을 던지게 설정할 수 있음. <br>
+        exception은 보다 더 unexpectied situation에서 사용되어야 함. input/output 과정에서의 format error와 같은 error는 정상으로 간주되며, exception 처리 보다는 state flag를 통한 처리 방법이 더 좋은 방법임.
+    </p>
+</ol>
 
 
 
