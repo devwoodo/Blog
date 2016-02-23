@@ -1,18 +1,19 @@
-<h4> Overview</h4>
+<h4> 0. Overview</h4>
 <p>
     <ul>
         <li>C++11부터 string stream과 file stream이 rvalue와 move semantic을 지원.</li>
     </ul>
     <a id="top">순서 </a>    
-    <ol>
-        <li><a href="#15_1">Background of I/O streams</a></li>
-        <li><a href="#15_2">Fundamental stream classes and objects</a></li>
-        <li><a href="#15_3">Standard Stream Operators &lt&lt and &gt&gt</a></li>
-        <li><a href="#15_4">State of Streams</a></li>
-    </ol>
+    <ul>
+        <li><a href="#15_1">1. Background of I/O streams</a></li>
+        <li><a href="#15_2">2. Fundamental stream classes and objects</a></li>
+        <li><a href="#15_3">3. Standard Stream Operators &lt&lt and &gt&gt</a></li>
+        <li><a href="#15_4">4. State of Streams</a></li>
+        <li><a href="#15_5">5. Standard Input/Output Functions</a></li>
+    </ul>
 </p>
 <br>
-<h4><a id="15_1">Background of I/O streams</a> </h4>
+<h4><a id="15_1">1. Background of I/O streams</a> </h4>
 <ol>
     <li>stream objects</li>
     <p>
@@ -39,7 +40,7 @@
     <li>a simple example</li>
 </ol>
 <br>
-<h4><a id="15_2">Fundamental stream classes and objects</a></h4>
+<h4><a id="15_2">2. Fundamental stream classes and objects</a></h4>
 <ol>
     <li>Classes and class hierarchy</li>
     <p>
@@ -67,7 +68,7 @@
         하도록 한다.  
     </p>
 </ol>
-<h4><a id="15_3">Standard Stream Operators &lt&lt and &gt&gt</a></h4>
+<h4><a id="15_3">3. Standard Stream Operators &lt&lt and &gt&gt</a></h4>
 <p>
     bit shift 연산자인 &lt&lt와 &gt&gt를 overloading 하여 입출력 연산자로 사용. void와 nullptr_t을 제외한 거의 모든 data type에 대해 overloading 되어있음.
 </p>
@@ -120,7 +121,7 @@
         <li>Monetary and Time Values</li>
     </ul>
 </ol>
-<h4><a id="15_4">State of Streams</a></h4>
+<h4><a id="15_4">4. State of Streams</a></h4>
 <p>
     Stream에는 I/O가 성공했는지 실패했는지, (실패한 경우) 실패한 이유 등이 기록된 state가 있음.
 </p>
@@ -154,6 +155,44 @@
         backward compatibility를 위해 stream는 exception을 던지지 않는 것이 default로 설정되있지만, 모든 flag에 대해 flag가 set 되었을 때 exception을 던지게 설정할 수 있음. <br>
         exception은 보다 더 unexpectied situation에서 사용되어야 함. input/output 과정에서의 format error와 같은 error는 정상으로 간주되며, exception 처리 보다는 state flag를 통한 처리 방법이 더 좋은 방법임.
     </p>
+</ol>
+<h4><a id="15_5">5. Standard Input/Output Functions</a></h4>
+<table style="border: 1px solid black">
+    <tr style="border: 1px solid black">
+        <th style="border: 1px solid black">formatted operator</th>
+        <th style="border: 1px solid black">unformatted operator</th>
+    </tr>
+    <tr style="border: 1px solid black">
+        <td style="border: 1px solid black">&lt&lt / &gt&gt</td>
+        <td style="border: 1px solid black">get(..), getline(..), read(..)
+            put(..), write(..)
+        </td>
+    </tr>
+    <tr style="border: 1px solid black">
+        <td style="border: 1px solid black">skips whitespaces</td>
+        <td style="border: 1px solid black">never skips leading whitespaces</td>
+    </tr>
+</table>
+<ol>
+    <li>Member functions for input</li>
+    <ul>
+        <li>get(c, num)</li>
+        <li>get(c, num, t)</li>
+        <li>getline(str, num)</li>
+        <li>getline(str, num, t)</li>
+        <li>read(str, num)</li>
+        <li>readwome(str, num)</li>
+        <li>etc..</li>        
+    </ul>
+    <p>
+        그러나 C-strings를 읽을 때는 위의 함수들보다  operator &gt&gt를 사용하는 것이 더 안전함. <br>
+        character나 string을 읽을 때 istream member function을 사용하는 것보다 stream buffer를 통해 바로 접근하는 것이 더 유리할 때가 많은데, 이는 stream buffer member function은 input 과정에서 (istream class와 달리) sentry object를 생성하지 않아 construction overhead가 없기 때문.
+    </p>
+    <li>Example Uses</li>
+    <li>sentry objects</li>
+    <p>
+        I/O stream operators 와 functions에서 I/O는 I/O preprocessing, 실제 I/O 작업, I/O postprocessing의 3단계에 걸쳐 수행됨. sentry class는 이를 위한 보조 클래스의 일종으로, stream과 관련된 여러 state에 관한 정보를 담고 있음. 만약 I/O operator를 stream buffer에 바로 적용하기 위해선 sentry object를 먼저 생성해줘야 함.
+    </p>    
 </ol>
 
 
