@@ -10,6 +10,8 @@
         <li><a href="#15_3">3. Standard Stream Operators &lt&lt and &gt&gt</a></li>
         <li><a href="#15_4">4. State of Streams</a></li>
         <li><a href="#15_5">5. Standard Input/Output Functions</a></li>
+        <li><a href="#15_6">6. Manipulators</a></li>
+        <li><a href="#15_7">7. Formatting</a></li>
     </ul>
 </p>
 <br>
@@ -194,8 +196,44 @@
         I/O stream operators 와 functions에서 I/O는 I/O preprocessing, 실제 I/O 작업, I/O postprocessing의 3단계에 걸쳐 수행됨. sentry class는 이를 위한 보조 클래스의 일종으로, stream과 관련된 여러 state에 관한 정보를 담고 있음. 만약 I/O operator를 stream buffer에 바로 적용하기 위해선 sentry object를 먼저 생성해줘야 함.
     </p>    
 </ol>
-
-
+<h4><a id="15_6">6. Manipuators</a></h4>
+<p>
+    Manipulator for streams는 standard I/O operators에 적용되어 stream의 특성을 바꿔주는 object를 말함. arguments를 가지는 standard manipulators는 헤더파일 <span style="background:#99ff99">&ltiomanip&gt</span>에 정의되어 있으며, 이를 사용하기 위해선 이 헤더 파일을 include해야함. 
+</p>
+<ol>
+    <li>Overview of All Manipulators</li>
+    <ul>
+        <li>endl</li>
+        <li>ends</li>
+        <li>flush</li>
+        <li>skipws</li>
+        <li>noskipws</li>
+        <li>setw</li>
+        <li>setfill</li>
+        <li>boolalpha</li>
+        <li>showpos</li>
+        <li>dec</li>
+        <li>hex</li>
+        <li>...</li>
+    </ul>
+    <li>How Manipulators Work</li>
+    <p>
+        
+        manipulator가 어떻게 작동할지는 구현하기에 따라서 달라지며, 구현 과정에 있어서 표준적인 방법은 존재하지 않음. <br>
+        <script src="https://gist.github.com/devwoodo/5bc742852dd67834d67f.js"></script>
+    </p>
+    <li>User-Defined Manipulatrs</li>
+</ol>
+<h4><a id="15_7">7. Formatting</a></h4>
+<ol>
+    <li>Format Flags</li>
+    <li>Input/Output Format of Boolean Values</li>
+    <li>Field width, Fill Character, and Adjustment</li>
+    <li>Positive Sign and Uppercase Letters</li>
+    <li>Numeric Base</li>
+    <li>Foating-Point Notation</li>
+    <li>General Formatting Definitions</li>
+</ol>
 
 <br><h4>출처 </h4>
 the c++ standard library a tutorial and reference by Nicolai M. Josuttis
