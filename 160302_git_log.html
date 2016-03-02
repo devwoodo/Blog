@@ -1,0 +1,43 @@
+<h4>Synopsis</h4>
+<p>
+    <span style="background:#99ff99">git log [&ltoptions&gt] [&ltrevision range&gt] [[\--] &ltpath&gt...]  </span> <br>
+    commit log를 보여주는 명령. commit log 의 출력 포맷을 직접 설정하거나 각 commit 간의 차이점을 출력하는 등 출력 결과를 다양한 방식으로 커스터마이징 할 수 있음.
+</p>
+<h4>Options</h4>
+<ul>
+    <li>-p</li>
+    <p>
+        각 commit의 diff 결과를 보여줌.
+    </p>
+    <li>-&ltnumber&gt</li>
+    <li>-n &ltn은 숫자&gt</li>
+    <p>
+        가장 최근의 n개까지의 commit log만 보여줌.
+    </p>
+    <li>--since=&ltdate1&gt</li>
+    <li>--until=&ltdate1&gt</li>
+    <p>
+        date1 에서 date2까지의 commit log를 보여줌
+    </p>
+    <li>--author=&ltpattern&gt</li>
+    <li>--committer=&ltpattern&gt</li>
+    <p>
+        commit의 작성자/committer가 pattern과 일치하는 commit log만 보여줌
+    </p>
+    <li>--graph</li>
+    <p>
+        commit log를 그래프로 표시함.        
+    </p>
+    <li>--pretty=&ltoptions&gt</li>
+    <p>
+        출력 결과를 option에 따라 보기 좋게 출력함.
+    </p>
+    <ul>
+        <li>oneline</li>
+        <li>short</li>
+        <li>medium</li>
+        <li>full</li>
+        <li>fuller</li>
+        <li>format:<i>string</i></li>
+    </ul>
+</ul>
