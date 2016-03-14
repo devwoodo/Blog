@@ -1,0 +1,43 @@
+
+<h3>user email, user name setting</h3>
+<p>
+    git config --global user.email
+    git config --global user.name 
+</p>
+
+<br>
+<h3>push option setting</h3>
+<p>
+    <i>--simple</i> / <i>--match</i> option 중 선택. 
+</p>
+
+<br>
+<h3>git's default editor setting</h3>
+<p>
+    Visual studio code를 default editor로 설정. <br>
+    git config --global core.editor="'<i>(dir)</i>/code.exe' -w" <br>
+    <i>-w</i> 옵션은 editor가 종료될 때까지 git이 기다린다는 의미. git이 어떤 명령을 실행하는 중에 editor가 실행되었다면, editor가 종료된 이후에 나머지 프로세스가 진행됨.
+</p>
+
+<br>
+<h3>특정 프로그램의 path를 git bash에 추가.</h3>
+<p>
+    git을 default editor로 세팅한 이후에는 git bash에서 VS code 실행 가능. <span style="background:#99ff99">code</span>를 통해 VS code 실행하거나 <span style="background:#99ff99">code .</span> 명령어로 현재 폴더를 프로젝트 폴더로 지정하여 VS code를 열 수 있음. 또한 <span style="background:#99ff99">code --new-window</span> 명령어로 empty project 상태로 VS code의 새창을 열 수도 있음. 
+    만약 git bash에서 code 명령이 실행이 되지 않을 경우엔 git bash에 VS code의 path를 추가해주어야 함.
+    <ol>
+        <li>c:\users\<i>your_id</i> 디렉터리에서 .bash_profile 파일을 에디터로 불러옴. 만약 파일이 없을 경우 파일을 생성.</li>
+        <li>다음 구문 추가 : alias code="<i>dir_address</i>/code.exe" <br>ex) alias code="C:/Program\ Files\ \(x86\)/Microsoft\ VS\ Code/code.exe"</li>
+        <p>
+            이때, 디렉터리를 구분하는 \(backward slash)를 모두 /(forward slash) 로 바꿔줌. 또한 따옴표나 (, ), space(공백) 등이 들어가는 경우 \(backward slash)를 통해 escape 처리를 해줘야 함.
+        </p>
+    </ol>
+</p>
+
+<br>
+<h3>references</h3>
+<ul>
+    <li><a href="https://dickwyn.wordpress.com/2015/06/13/making-visual-studio-code-the-default-text-editor-on-git/">Making Visual Studio Code the default text editor on Git</a></li>
+    <li><a href="http://www.seangwright.me/blog/tools/how-to-open-visual-studio-code-from-git-bash-in-windows/">How to open Visual Studio Code from git bash in Windows</a></li>
+    <li><a href="https://gist.github.com/Alber70g/98a6506be1707a7962c2">VS Code Shell Shortcut for Git Bash</a></li>
+    <li><a href="http://stackoverflow.com/questions/30024353/how-to-use-visual-studio-code-as-default-editor-for-git">How to use Visual Studio Code as Default Editor for Git |stackoverflow</a></li>
+</ul>
