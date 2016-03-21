@@ -1,0 +1,19 @@
+<title>superscript (윗첨자), subscript (아랫첨자) 삽입하는 방법. (markdown/html)</title>
+
+<h3>순수 markdown 문법</h3>
+<ul>
+    <li>superscript: ^<i>(text)</i>^</li>
+    <li>subscript: ~<i>(text)</i>~</li>
+</ul>
+<p>
+    만약 text 사이에 공백이 있다면 공백에 \ (escape) 처리를 해줘야 함. ex) ^<i>hello</i>\ <i>world!</i>^ 
+</p>
+
+<h3>html tag 사용</h3>
+<p>
+    markdown에서는 위의 문법을 지원하지 않는 경우가 있음. github 에서는 위의 문법을 지원하지 않는데, 이런 경우엔 html tag를 사용. markdown 뿐 아니라 html에서도 사용 가능. 
+</p>
+<ul>
+    <li>superscript: &ltsup&gt<i>superscript</i>&lt/sup&gt 
+    <li>subscript: &ltsub&gt<i>subscript</i>&lt/sub&gt
+</ul>
