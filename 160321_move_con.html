@@ -1,9 +1,43 @@
+title: move semantic을 적용하는 방법
+<h3>move constructor와 move assignment operator를 정의</h3>
+<h4>move constructor를 정의</h4>
+<ul>
+    <li>move constructor</li>
+    <p>
+        move constructor의 경우moved-to-obj의 리소스를 해제하고 그 자리에 move-from-obj의 리소스를 배정. move-from-obj의 리소스 참조를 끊어줌.(ex. pointer를 nullptr로 변경)
+    </p>
+    <li>move assignment operator</li>
+    <p>
+        move-to-obj와 move-from-obj가 동일한 객체인지 검사하고 동일하지 않은 객체일 경우 이동 작업을 진행. 
+    </p>
+</ul>
+<script src="https://gist.github.com/devwoodo/acdc86d9cf78c33ff29d.js"></script>
+
+<h4>코드의 간략화</h4>
+<p>
+    move assignment operator를 이용해 move constructor의 중복 코드를 제거할 수 있음.
+</p>
+<script src="https://gist.github.com/devwoodo/2cf2640bbcd40892f066.js"></script>
+<h4>기타</h4>
+<ul>
+    <li>move constructor의 move-from-obj destruct</li>
+    <p>
+        일반적으로, move constructor에서 move-from-obj를 destruct 해주지는 않음. 그러나 move constructor가 불린 후 꼭 move destructor가 뒤따라 불리는데, 이건 move constructor가 move-from-obj를 destruct해서가 아니라 함수에서 임시로 생성됐던 객체가 move constructor가 불린 후 life time이 끝나 해제가 된 것. move constructor에서 move-from-obj의 destruct해야할 어떤 책임도 없음.  
+    </p>
+    <li></li>
+</ul>
+
+<h3>rvalue를 param.로 받는 함수를 overloading.</h3>
+<p>
+    perfect forwarding?
+</p>
+
 <h3>references</h3>
 <ul>
-    <li><a href="https://www.google.co.kr/search?sourceid=chrome-psyapi2&ion=1&espv=2&ie=UTF-8&q=c%2B%2B%20move%20semantic&oq=c%2B%2B%20move%20semantic&aqs=chrome..69i57j69i60j69i65j0l3.4589j0j7">c++ move semantic |google search</a></li>
-    <li><a href="http://stackoverflow.com/questions/1374468/stringstream-string-and-char-conversion-confusion"></a></li>
     <li><a href="https://msdn.microsoft.com/ko-kr/library/dd293665.aspx">이동 생성자 및 이동 할당 연산자(C++) |MSDN</a></li>
     <li><a href="http://stackoverflow.com/questions/27612289/move-constructor-not-calling-destructor">Move constructor not calling destructor? |stackoverflow</a></li>
+    <li>---</li>
+    <li><a href="https://www.google.co.kr/search?sourceid=chrome-psyapi2&ion=1&espv=2&ie=UTF-8&q=c%2B%2B%20move%20semantic&oq=c%2B%2B%20move%20semantic&aqs=chrome..69i57j69i60j69i65j0l3.4589j0j7">c++ move semantic |google search</a></li>
     <li><a href="http://stackoverflow.com/questions/20589025/why-is-the-destructor-call-after-the-stdmove-necessary">why is the destructor call after the std::move necessary? |stackoverflow</a></li>
     <li><a href="http://stackoverflow.com/questions/17473753/c11-return-value-optimization-or-move">c++11 Return value optimization or move? |stackoverflow</a></li>
     <li><a href="http://www.cprogramming.com/c++11/rvalue-references-and-move-semantics-in-c++11.html">Move semantics and rvalue references in C++11</a></li>
