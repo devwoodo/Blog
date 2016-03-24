@@ -1,5 +1,26 @@
-git reference
-git reflog
-git update-ref
+title: git internals: ref
+<h3>
+refs 란?</h3>
+<p>
+    SHA-1 값을 알면 이를 통해 해당 commit 및 전체 히스토리를 살펴볼 수 있음. 기억하기 힘든 SHA-1 값 대신 외우기 쉬운 이름으로 된 파일을 만들고 파일에 SHA-1 값을 기록했는데, 이것이 git의 refs
+    임. 이런 refs 들은 .git/refs 디렉토리에 저장됨.
+    <img src="https://raw.githubusercontent.com/devwoodo/Blog/master/pictures/2016/3/refs_contents.PNG" alt="">
+    <ul>
+        <li>.git/refs/heads: local branch 이름의 파일이 생성. 파일에는 해당 브랜치에서 head가 가리키는 commit의 SHA-1이 저장됨.</li>
+        <li>.git/refs/remotes: remote branch 이름의 파일이 origin 디렉토리 안에 생성됨. 파일에는 해당 브랜치에서 head가 가리키는 commit의 SHA-1이 저장됨.</li>
+        <li>.git/refs/tags: tag 이름의 파일이 생성됨. 파일에는 해당 태그가 가리키는 commit의 SHA-1이 저장됨.</li>
+    </ul>
+</p>
+<h3>
+더 알아볼 것</h3>
+<ul>
+    <li>git reflog</li>
+    <li>git update-ref</li>
+</ul>
+<h3>
+reference</h3>
+<ul>
+    <li><a href="https://git-scm.com/book/ko/v2/Git%EC%9D%98-%EB%82%B4%EB%B6%80-Git-Refs">10.3 Git의 내부 - Git Refs</a></li>
+</ul>
 
 <h3>reference</h3>
