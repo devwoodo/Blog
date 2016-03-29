@@ -1,0 +1,44 @@
+
+title: constructor/destructor와 assignment operator가 (자동으로) implicit define되지 않는 경우.
+<h3></h3>
+<ul>
+    <li>default constructor</li>
+    <ul>
+        <li>하나라도 직접 정의한 constructor가 있을 때</li>
+        <li>클래스 멤버 중에 default constructing이 불가능한 멤버가 있을 때( ex. reference, const object 등)</li>
+    </ul>
+    <li>copy constructor</li>
+    <ul>
+        <li>직접 정의한 copy constructor(class T에 대해 T, T&, const T&를 받는 constructor)가 하나라도 있을 때 </li>
+        <li>클래스 멤버 중에 copy constructing이 불가능한 멤버가 있을 때( ex. reference 등)</li>
+        <li>직접 정의한 move constructor 나 move assignment op가 있을 때</li>
+    </ul>
+    <li>copy assignment operator</li>
+    <ul>
+        <li>직접 정의한 copy assignment op(class T에 대해 T, T&, const T&를 받는 op)가 하나라도 있을 때 </li>
+        <li>클래스 멤버 중에 자동으로 assign이 불가능한 멤버가 있을 때( ex. reference, const object 등)</li>
+        <li>직접 정의한 move constructor 나 move assignment op가 있을 때</li>
+    </ul>
+    <li>destructor</li>
+    <ul>
+        <li>직접 정의한 destructor가 있는 경우</li>
+    </ul>
+    <li>move constructor</li>
+    <ul>
+        <li>직접 정의한 move constructor가 있는 경우</li>
+        <li>클래스 멤버 중에 move가 불가능한 멤버가 있는 경우( ex. deleted/inaccessible/ambiguou 등)</li>
+        <li>직접 정의한 copy constructor, copy assignment op, destructor, move assignment op가 있는 경우</li> 
+    </ul>
+    <li>move assignment operator</li>
+    <ul>
+        <li>직접 정의한 move assignment op가 있는 경우</li>
+        <li>직접 정의한 copy constructor, copy assignment op, destructor, move constructor가 있는 경우</li>
+    </ul>
+    
+</ul>
+
+<h3>references</h3>
+<ul>
+    <li><a href="http://stackoverflow.com/questions/15590832/conditions-under-which-compiler-will-not-define-implicits-constructor-destruct">Conditions under which compiler will not define implicits (constructor, destructor, copy constructor, copy assignment) [duplicate]</a></li>
+    <li><a href="http://stackoverflow.com/questions/4943958/conditions-for-automatic-generation-of-default-copy-move-ctor-and-copy-move-assi">Conditions for automatic generation of default/copy/move ctor and copy/move assignment operator?</a></li>
+</ul>
