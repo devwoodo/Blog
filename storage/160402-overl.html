@@ -1,0 +1,14 @@
+title: how to implement operator [][]
+<h3>operator[][] function은 존재 X</h3>
+<p>
+    overloading 할 수 있는 여러 종류의 operator function이 있지만, operator [][] function은 존재하지 않음. 다만 직접 [][]의 overloading이 불가능할 뿐이지 간접적인 방법으로는 overloading 가능
+</p>
+<h3>operator[][] overloading</h3>
+<p> 
+    operator [][]를 구현하려는 클래스의 operator[]를 overloading 해서 중간에 거쳐가는 객체(임시 클래스)를 리턴하도록 하고, 이 클래스의 operator[]를 오버로딩하면 operator[][]를 구현 가능.
+</p>
+<script src="https://gist.github.com/devwoodo/5abd09adfee27aa28c1052b21ddd84e3.js"></script>
+<h3>references</h3>
+<ul>
+    <li><a href="http://stackoverflow.com/questions/12657811/overloading-operators-in-c?rq=1">overloading [][] operators in c++</a></li>
+</ul>
