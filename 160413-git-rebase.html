@@ -1,0 +1,88 @@
+<h3>rebase 과정</h3>
+<ol>
+    <li>txt 파일에 1 2 3 4 5 6 7 작성 후 각각 commit.</li>
+    <div class="separator" style="clear: both; text-align: center;">
+        <a href="https://4.bp.blogspot.com/-1OpcRk_sjmw/Vw5JrCj103I/AAAAAAAAAJ4/NWf0q2bDVswZlbqFKrzTsIPoasThK1MZQCLcB/s1600/2-txt-content.PNG"
+        imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://4.bp.blogspot.com/-1OpcRk_sjmw/Vw5JrCj103I/AAAAAAAAAJ4/NWf0q2bDVswZlbqFKrzTsIPoasThK1MZQCLcB/s320/2-txt-content.PNG"
+            /></a>
+        <br>&lttext 파일 내용&gt </div>
+    <br>
+
+
+    <div class="separator" style="clear: both; text-align: center;">
+        <a href="https://raw.githubusercontent.com/devwoodo/pictures/master/blog/2016/4/13/1-commit-log.PNG" imageanchor="1"
+        style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://raw.githubusercontent.com/devwoodo/pictures/master/blog/2016/4/13/1-commit-log.PNG"
+            /></a>
+        <br>&ltcommit log&gt&nbsp</div>
+    <p>
+        현재 HEAD는 "commit 7"을 가리키고 있음.
+    </p>
+    <li>rebase 실행: <span style="background:#99ff99">git rebase HEAD~7 -i</span></li>
+    <ul>
+        <li>HEAD 는 어느 commit 까지 rebase 할지를 알려주고 -i 옵션은 interactive 하게 rebase를 실행함을 의미.</li>
+        <li><span style="background:#99ff99">HEAD~<i>n</i></span> 에서 <i>n</i>은 commit log에서 첫번째 commit까지 rebase하는 경우 1, 2번째까지
+            rebase하는 경우 2, ... , n번째 commit까지 rebase하는 경우 n이 됨. 즉, 위의 예시에서 "commit 7"이 <span style="background:#99ff99">HEAD~1</span>이
+            됨</li>
+    </ul>
+    <li>-i 옵션으로 인해 rebase 대화창이 pop-up</li>
+    <ul>
+        <li>commands를 입력해 commit 내용 편집, 삭제, 순서 변경 등의 작업을 수행. 메모장을 저장하고 닫으면 commands에 따라 rebase가 수행됨.</li>
+        <div class="separator" style="clear: both; text-align: center;">
+            <a href="https://1.bp.blogspot.com/-fbSKtAC8wyc/Vw5KlbHmCzI/AAAAAAAAAKE/yXWA8obwFmo7rX4XIfC-lbeMxYPb2hcJgCLcB/s1600/3-git-rebase-todo.PNG"
+            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://1.bp.blogspot.com/-fbSKtAC8wyc/Vw5KlbHmCzI/AAAAAAAAAKE/yXWA8obwFmo7rX4XIfC-lbeMxYPb2hcJgCLcB/s320/3-git-rebase-todo.PNG"
+                /></a>
+            <br>&lt변경 전 commit&gt&nbsp</div>
+        <br>
+
+        <div class="separator" style="clear: both; text-align: center;">
+            <a href="https://3.bp.blogspot.com/-i1iyK98WSYg/Vw5K8aWtkgI/AAAAAAAAAKM/0IitN4O4RqgM74PRYZaE1LY8bX_aHT-5gCLcB/s1600/4-git-rebase-todo-fixup.PNG"
+            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://3.bp.blogspot.com/-i1iyK98WSYg/Vw5K8aWtkgI/AAAAAAAAAKM/0IitN4O4RqgM74PRYZaE1LY8bX_aHT-5gCLcB/s400/4-git-rebase-todo-fixup.PNG"
+                /></a>
+            <br>&lt수정 된 commit&gt&nbsp</div>
+        <br>
+
+        <li>rebase 메시지에서 commit 정렬 순서: 오래된 commit이 위쪽에, 최근에 수행한 commit이 아래쪽으로 정렬됨.</li>
+        <li>병합 순서: commit이 squash 될 때는 위쪽의 commit으로 병합</li>
+        <p>
+            오래된 commit에 차곡차곡 변경 사항이 쌓임. 위의 예에서는 "commit 2" 가 "commit 1"에 병합. "commit 6" -> "commit 5" -> "commit 4"에 병합.
+        </p>
+        <li>rebase 수행 후: "commit 7"</li>
+        <div class="separator" style="clear: both; text-align: center;">
+            <a href="https://4.bp.blogspot.com/-HbRfp-q5RxE/Vw5LXqbEVVI/AAAAAAAAAKU/D9l-t7ymhJocMXv8hyQ85f_VIK9tQFAMACLcB/s1600/5-commit-log-after-rebase.PNG"
+            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://4.bp.blogspot.com/-HbRfp-q5RxE/Vw5LXqbEVVI/AAAAAAAAAKU/D9l-t7ymhJocMXv8hyQ85f_VIK9tQFAMACLcB/s400/5-commit-log-after-rebase.PNG"
+                /></a>
+            <br>&ltcommit log&gt&nbsp</div>
+        <br>
+
+        <div class="separator" style="clear: both; text-align: center;">
+            <a href="https://4.bp.blogspot.com/-G--RFttHulg/Vw5LhTqq9SI/AAAAAAAAAKY/a6_D0O43b04MTL-2DLs6cyuOQxiKzQ4zQCLcB/s1600/5-txt-content-after%2Brebase.PNG"
+            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://4.bp.blogspot.com/-G--RFttHulg/Vw5LhTqq9SI/AAAAAAAAAKY/a6_D0O43b04MTL-2DLs6cyuOQxiKzQ4zQCLcB/s400/5-txt-content-after%2Brebase.PNG"
+                /></a>
+            <br> &lttext file contents&gt&nbsp</div>
+        <br>
+
+        <li>rebase 수행 후: "commit 4"</li>
+        <p>
+            "commit 4"에 "commit 5,6"의 내용이 병합. 위쪽(보다 오래된 commit)에 변경 사항이 누적됨.
+        </p>
+        <div class="separator" style="clear: both; text-align: center;">
+            <a href="https://4.bp.blogspot.com/-TtT_gGqBC4g/Vw5Ls1wdRYI/AAAAAAAAAKc/HZ0vL67lFgQR0-itKC9BC5wUbQV_7sbEgCLcB/s1600/7-txt-content-after-reset.PNG"
+            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://4.bp.blogspot.com/-TtT_gGqBC4g/Vw5Ls1wdRYI/AAAAAAAAAKc/HZ0vL67lFgQR0-itKC9BC5wUbQV_7sbEgCLcB/s400/7-txt-content-after-reset.PNG"
+                /></a>
+            <br>&lttext file contents&gt&nbsp</div>
+        <br>
+        <li>rebase 수행 후: "commit 1"</li>
+        <p>
+            "commit 1"에 "commit 2"의 내용이 병합. 위쪽(보다 오래된 commit)에 변경 사항이 누적됨.
+        </p>
+        <div class="separator" style="clear: both; text-align: center;">
+            <a href="https://2.bp.blogspot.com/-pRIfwe66ld0/Vw5L395IJ8I/AAAAAAAAAKk/BzbTe8EeJ2ElynWwrbFfDCwkSeb_-TqiQCLcB/s1600/9-txt-content-after-reset.PNG"
+            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://2.bp.blogspot.com/-pRIfwe66ld0/Vw5L395IJ8I/AAAAAAAAAKk/BzbTe8EeJ2ElynWwrbFfDCwkSeb_-TqiQCLcB/s400/9-txt-content-after-reset.PNG"
+                /></a>
+            <br> &lttext file contents&gt&nbsp</div>
+        <br>
+    </ul>
+</ol>
+
+<h3>references</h3>
+<a href="https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase-i">Rewriting history</a>
