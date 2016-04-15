@@ -1,0 +1,24 @@
+title: STL unordered_map
+<p>
+    associative container. 각 element는 Hash 함수를 통해 bucket이라는 하위 시퀀스로 약하게 정렬됨. bucket 간의 탐색 시간은 constant, bucket 내에서의 탐색  시간은 linear함.
+    요소를 제거하는 경우 해당 요소의 iterator는 무효화되지만, 그외 다른 iterator는 유효함.
+</p>
+<h3>사용법</h3>
+<ul>
+    <li>key와 element의 std::pair를 element로 가짐</li>
+    <li>iterator를 사용한 sequential한 반복 탐색, range 반복 탐색 가능(begin(), end())</li>
+    <li>요소 삽입은 insert(..) 혹은 emplace(..) 사용</li>
+    <li>operator[<i>key</i>]를 이용한 random access 가능. 만약 존재하지 않는 <i>key</i>에 접근하는 경우 해당 key를 갖는 새로운 element 생성</li>
+    <li>find(<i>key</i>)로 탐색 가능. 반환형은 해당 element의 iterator</li>
+    <li>count(<i>key</i>) vs size(): count는 지정된 key를 갖는 element의 수를 반환, size는 map 내의 element 총개수를 반환. unorded_map의 경우 모두 다른 key 값을 갖기 때문에, 해당 key의 element가 있으면 1, 없으면 0 반환</li>
+    <li>erase(..): key나 iterator, ranged iterator로 지울 element 선택 가능. 각 경우에 따라 반환형이 달라지는데, key의 경우 지워진 element의 개수, iterator의 경우 지워진 element 중 마지막 element의 iterator를 반환</li>
+    <li>clear(): 모든 element의 destructor를 부르고 container에서 drop시킴. size는 0이 됨</li>
+</ul>
+<h3>예시</h3>
+<script src="https://gist.github.com/devwoodo/924a037aba42265aa437eb68a029166f.js"></script>
+
+<h3>references</h3>
+<ul>
+    <li><a href="https://msdn.microsoft.com/ko-kr/library/bb982522.aspx">unordered_map 클래스 |MSDN</a></li>
+    <li><a href="http://www.cplusplus.com/reference/unordered_map/unordered_map/">std::unordered_map |cplusplus.com</a></li>
+</ul>
