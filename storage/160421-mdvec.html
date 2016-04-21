@@ -1,0 +1,30 @@
+title: multi-dimensional vector로 2차원 행렬 구현하기
+<h3></h3>
+<p>
+    vector를 요소로 갖는 벡터를 선언하여 2-dim array를 구현 가능. 이 경우, 각각의 row는 별도의 vector 이므로, n x n 으로 딱 떨어지는 행렬 뿐 아니라 row마다 서로 다른 크기의 column을 가지게 하는 것도 가능.<br>
+    예제<br>
+    <script src="https://gist.github.com/devwoodo/2e861305257c22ec8e837583bf9c8644.js"></script>
+    <br>
+    단, method1 의 경우 column의 크기가 커지는 경우 vector 재할당이 발생해 효율이 떨어질 수 있음. 특히 새로운 row의 추가로 인한 vector 재할당은 단순히 그 row만 영향을 받는게 아니라 전체 row에 대해 재할당이 일어나기 때문에, 각 row 별로 vector 들이 전부 재할당 되어 더욱 심각한 비효율을 초래함.<br>
+    
+    <blockquout>
+        결과<br>
+        ========================
+            0   1   2
+            3   4   5
+
+        ========================
+            1   2   3
+            4   5   6
+
+        ========================
+            0   0   0
+            0   0   0
+    </blockquout>
+    
+</p>
+
+<h3>reference</h3>
+<ul>
+    <li><a href="http://www.cplusplus.com/forum/general/833/">multidimensional vector, how to |cplusplus.com</a></li>
+</ul>
