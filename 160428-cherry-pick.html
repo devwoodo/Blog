@@ -1,0 +1,27 @@
+title: git cherry-pick 사용법
+<quout>
+    Given one or more existing commits, apply the change each one introduces, recording a new commit for each. This requires your working tree to be clean (no modifications from the HEAD commit).
+</quout>
+<p>
+    다른 branch로부터 특정 commit을 가져와서 추가. 추가한 commit으로 새로운 commit이 생기며(hash값이 다름) 해당 commit에서 이루어진 변경 사항만 적용됨.
+</p>
+<h3>더 연구할 점</h3>
+<ol>
+    <li>reference에 따르면 cherry-pick하는 commit 만의 변경 사항을 가져올 것 같은데, 실제로는 conflict("both modified: <i>파일명</i>") 가 발생하며 현재 branch와 cherry-picking branch의 공통 부모로부터 cherry-picking commit까지 모든 commit을 가져옴 (변경 사항을 누적시켜 모두 가져옴).</li>
+    <li>새로운 파일을 생성하고 만든 첫 commit을 cherry-pick하는 경우에는 merge conflict 없이 cherry-picking 됨</li>
+    <li>만약 새로운 파일을 생성하고 해당 파일을 수정하며 여러번 commit하고 이중 하나의 commit만 cherry-picking 하는 경우 conflict("deleted by us: <i>파일명</i>") 발생하며 현재 branch와 cherry-picking branch의 공통 부모로부터 cherry-picking commit까지 모든 commit을 가져옴 (변경 사항을 누적시켜 모두 가져옴).</li>
+</ol>
+    
+
+
+<h3>reference</h3>
+<ul>
+    <li><a href="https://ariejan.net/2010/06/10/cherry-picking-specific-commits-from-another-branch/">Cherry-Picking specific commits from another branch</a></li>
+    <li><a href="https://git-scm.com/docs/git-cherry-pick">git-cherry-pick |git-scm.com</a></li>
+    <li><a href="http://stackoverflow.com/questions/5717026/how-to-git-cherry-pick-only-changes-to-certain-files">How to git-cherry-pick only changes to certain files? |stackoverflow.com</a></li>
+    <li><a href="http://stackoverflow.com/questions/16068186/git-how-to-cherry-pick-only-changes-for-only-one-file-not-the-whole-commit?lq=1">git - How to cherry pick only changes for only one file, not the whole commit |stackoverflow.com</a></li>
+    <li><a href="http://stackoverflow.com/questions/35361843/why-does-git-cherry-pick-not-continue">Why does git cherry-pick not continue? |stackoverflow.com</a></li>
+    <li><a href="http://stackoverflow.com/questions/30678217/git-cherry-pick-inserts-changes-from-other-commits">Git: cherry pick inserts changes from other commits |stackoverflow.com</a></li>
+    <li><a href="http://stackoverflow.com/questions/7802252/why-cherry-pick-pick-change-more-than-one-commit">Why cherry-pick pick change more than one commit? |stackoverflow.com</a></li>
+    
+</ul>
