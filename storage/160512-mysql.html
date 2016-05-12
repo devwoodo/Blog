@@ -1,0 +1,39 @@
+title: MySQL 설치 관련 정보
+tag:
+
+<ul>
+    <li>MySQL server (필수)</li>
+    <p>
+        서버(DB)
+    </p>
+    <li>MySQL for Visual Studio</li>
+    <p>
+        MySQL 서버(DB) 관리 시 커맨드 라인에서 DDL이나 DML을 사용하지 않고도 Visual Studio에서 GUI로 편집할 수 있게 해주는 도구.  
+        <blockquote style="background:#99dd99">
+            주의<br>
+            MySQL for V.S. 와 MySQL connector 설치 시 반드시 MySQL for V.S. 를 먼저 설치한 후 MySQL connector를 나중에 설치해야 함.
+        </blockquote>
+    </p>
+    <li>MySQL connector/C++ (필수)</li>
+    <p>
+        C++에서 MySQL 서버(DB)에 접근할 수있게 연결해주는 라이브러리. 크게 source file 형태, binary 형태로 제공. binary 형태의 제공은 미리 컴파일 되어있어 별도의 컴파일 과정 없이 사용 가능하나, 컴파일러 버전에 따라 호환이 되지 않을 수도 있음. 따라서 MySQL 측은 source file에서 자신이 사용하는 컴파일러를 통해 binary를 직접 생성할 것을 권장.
+    </p>
+    <li>MySQL workbench C/E</li>
+    <p>
+        MySQL 서버(DB)를 GUI로 편집할 수 있게 해주는 도구.
+    </p>
+    <li>MySQL on Windows: MySQL INstaller</li>
+    <p>
+        위의 MySQL 서버와 tool들을 모두 포함한 all-in-one 버전. 
+        <blockquote style="background:#99dd99">
+            주의<br>
+            다만, 설치 과정에서 Visual studio와 MySQL의 bit 버전(86/64)을 동일하게 맞춰줘야하는데, 개별 설치하는 경우 각각 bit 버전을 맞출 수 있는 반면에서 자동 설치를 선택 시 비트 버전이 제각각이 될 수 있으니 주의.            
+        </blockquote>        
+    </p>
+</ul>
+
+
+<h3>reference</h3>
+<ul>
+    <li><a href="http://dev.mysql.com/doc/connector-cpp/en/connector-cpp-introduction.html">Chapter 1 Introduction to Connector/C++ |dev.MySQL.com</a></li>
+</ul>
