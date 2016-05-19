@@ -1,0 +1,32 @@
+title: SQL Server connection error: 26
+tag: MSSQL, DB, Programming, Troubleshoot
+<h3>증상</h3>
+<p>
+    Microsoft SQL Server Management Studio 실행 후 Server(Database engine) Connection 시 접속 불가 현상.
+    MS SMS connection window<br>
+    //rev fig.2
+    MS SMS error message<br>
+    //rev fig.1 
+</p>
+
+
+<h3>해결책</h3>
+<p>
+    SQL Server 의 log on 대상을 built-in:local system으로 바꿔줌.
+</p>
+<ol>
+    <li>SQL Server Configuration Manager 실행</li>
+    <li>SQL Server Service items 설정 변경</li>
+    <ol>
+        <li>SQL Server(SQLEXPRESS) > properties</li>
+        <li>log on tab 선택</li>
+        <li>Log on as: built-in account > Local System 지정</li>
+        <li>필요한 경우 해당 서비스 리부트</li>
+    </ol>
+    <li>SQL SMS connection window에서 Server name을 <span style="background:#99dd99"> .\SQLEXPRESS </span>로 변경 후 접속</li>
+</ol>
+
+<h3>reference</h3>
+<ul>
+    <li><a href="http://stackoverflow.com/questions/6466974/unable-to-connect-to-sql-express-error-26-error-locating-server-instance-speci">Unable to connect to SQL Express "Error: 26-Error Locating Server/Instance Specified) |stackoverflow.com</a></li>
+</ul>
