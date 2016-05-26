@@ -1,0 +1,19 @@
+title: wide character type (wchar_t) 란?
+tag: 
+
+<p>
+    wide charater란 전통적인 8-bit character보다 더 큰 사이즈를 가지는 character datatype을 말함. datatype 사이즈가 커져 더 큰 character sets을 표현할 수 있다. UTF-16 little endian이 마이크로소프트의 wchar_t 표준이지만, wchar_t는 플랫폼 별, 컴파일러 별로 8 bit 에서 32 bit 까지 다양한 wide character implementation을 가지고 있어 wchar_t의 크기는 통일이 되지 않았다. 이런 이유로 프로그램이 multi platform에서 사용이 될 예정이라면 유니코드 저장 용도로 wchar_t을 사용해서는 안된다.    
+</p>
+<p>
+    C/C++ 소스 코드는 보통 US-ASCII나 ISO-2022를 따르는 MBCS로 작성된다. 따라서 소스 코드에선 원칙적으로 wchar_t 문자열 사용이 불가능하다(ASCII와 호환되는 MBCS나 UTF-8만 가능). 이와 같이 소스 코드에서 wide character를 받지 않기 때문에, 소스 코드 상에서 L 문자를 문자열 앞에 붙여 wide character를 표현한다. <br>
+    <span style="background:#99dd99"> wchar_t * wchar = L"wide character string" </span><br>
+    그러나 옛날 버전의 gcc 컴파일러에서는 이런 표현을 지원하지 않는 경우가 있기 때문에 확인이 필요하다.
+</p>
+
+
+
+<h3>reference</h3>
+<ul>
+    <li><a href="https://en.wikipedia.org/wiki/Wide_character">Wide character |wikipedia.org</a></li>
+    <li><a href="http://sonhy1.tistory.com/112">wchar_t에 대하여</a></li>
+</ul>
