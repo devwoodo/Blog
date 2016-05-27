@@ -1,0 +1,20 @@
+title: ODBC Fundamentals: Descriptor Handles
+tag: MSSQL ODBC
+<p>
+    descriptor란 어플리케이션이나 드라이버에게 보여지는 SQL statment의 param. 나 result set의 칼럼과 같은 메타데이터의 collection을 의미한다. descriptor는 다음 네가지 중 어떠한 역할도 맡을 수 있다.
+</p>
+<ul>
+    <li><b>Application Parameter Descriptor (APD).</b></li> SQL statement의 param.에 bound된 어플리케이션 버퍼에 대한 정보(그 버퍼의 주소, 크기, C data types 등)을 가짐.  
+    <li><b>Implementation Parameter Descriptor (IPD).</b></li> SQL statement의 파라미터에 관한 정보(SQL data type이나 크기, nullability)를 가짐.
+    <li><b>Application Row Descriptor (ARD).</b> result set의 칼럼에 bound된 어플리케이션 버퍼데 대한 정보(그 버퍼의 주소나 크기, C data type 등)를 가짐.</li>
+    <li><b>Implementation Row Descriptor (IRD).</b> result set의 칼럼에 대한 정보(SQL data type이나 크기, nullability 등)를 가짐.</li>
+</ul>
+<p>
+    statement가 할당될 때 위 네개의 descriptors도 자동으로 할당되지만, 어플리케이션에서 <span style="background:#99dd99">SQLAllocHandle(..) </span>을 통해서 직접 할당할 수도 있으며 이를 <i>explicityly allocated descriptors</i>라 한다. 이런 descriptors는 connection에 할당이 되어 마찬가지로 그 connection에 할당된 하나 이상의 statements와 연관되어 APD 나 ARD의 역할을 맡는다. 
+    ODBC에서 수행되는 대부분의 operation은 <i>explicityly allocated descriptors</i> 없이 수행 가능하지만, 때로 이런 descriptors가 몇몇 operation의 편리한 shortcut으로 사용할 수도 있다. (<a href="#reference">reference</a> 참조)
+</p>
+
+<h3 id=reference>reference</h3>
+<ul>
+    <li><a href="https://msdn.microsoft.com/en-us/library/ms712570(v=vs.85).aspx">Descriptor Handles |MSDN</a></li>
+</ul>
