@@ -1,0 +1,100 @@
+title: ODBC API 
+tag: 
+
+<h3>연결 과정</h3>
+<ol>
+    <li>ODBC Data Source 설정 참고)<a href="https://devwoodo.blogspot.kr/2016/05/windows-10-odbc-data-source.html">windows 10에서 ODBC data source 설정 방법</a></li>
+    <li>DB에 연결</li>
+    <ol>
+        <li><b>Header 파일 include: </b>sql.h , sqltypes.h , sqlext.h</li>
+        <li><b>SQLAllocHandle(..): </b>Environment handle (object) 할당</li>
+        <li><b>SQLSetEnvAttr(..): </b>Environment handle 설정</li>
+        <li><b>SQLAllocHandle(..): </b>Connection handle (object) 할당</li>
+        <li><b>SQLSetConnectAttr(..): </b>Connection handle 설정</li>
+        <li><b>SQLConnect(..) (또는 SQLDriverConnect(..)): </b>DB와 연결</li>
+        <p>
+            SQLDriverConnect(..)는 GetDesktopWindow() 사용해 windows.h 사용. 
+        </p>
+        <li><b>SQLAllocHandle(..): </b>Statement handle (object) 할당</li>
+        <li>(<b>SQLSetStmtAttr(..): </b>Statmenet handle 설정)</li>        
+    </ol>
+    <p>
+        ODBC API에 param.로 char string을 전달 시 반드시 wchar 형으로 전달해야 함. 참고) <a href="https://devwoodo.blogspot.kr/2016/05/wide-character-type-wchart.html">wide character type (wchar_t) 란?</a>
+    </p>
+    <li>statement 실행</li>
+
+    <li>Query 결과 확인</li>
+    
+    <li>DB와의 연결 해제</li>
+    <ol>
+        <li><b>SQLFreeHandle(..): </b>Statement handle 해제</li>
+        <li><b>SQLDisconnect(..): </b>DB 연결 해제</li>
+        <li><b>SQLFreeHandle(..): </b>Connection handle 해제</li>
+        <li><b>SQLFreeHandle(..): </b>Environment handle 해제</li>
+    </ol>
+</ol>
+
+<h3>statement 실행</h3>
+<h4>query 직접 입력</h4>
+<ul>
+    <li><b>SQLExecDirect(..): </b>SQL 문 실행</li>
+</ul>
+<p>
+    querying의 반복 실행이 없는 경우 가장 적합한 방식.
+</p>
+    
+<h4>prepared procedure</h4>
+<ol>
+    <li><b>SQLBindParameter(..): </b>SQL statement의 param. marker에 버퍼를 bind.</li>
+    <li><b>SQLPrepare(..): </b>query 실행을 위한 SQL string을 준비.</li>
+    <li><b>SQLExecute(..): </b>prepared statement를 실행. 만약 param. marker가 statement 에 존재한다면 param. marker 변수의 현재 값을 사용.</li>
+</ol>     
+
+<h3>query 결과 확인</h3>
+<h4>query 결과로부터 데이터 추출</h4>
+<ol>
+    <li><b>SQLBindCol(..): </b>어플리케이션 데이터 버퍼를 result set의 column에 bind</li>
+    <li><b>SQLFetch(..): </b>result set의 다음 rowset의 데이터를 가져와서 bound된 모든 column에 대한 데이터를 리턴.</li>
+</ol>
+<ul>
+    <li><b>SQLFetchScroll(..): </b>result set의 다음 rowset의 데이터를 가져와서 bound된 모든 column에 대한 데이터를 리턴. rowset은 절대/상대/북마크 위치로 설정가능.</li>
+</ul>
+<p>
+    column-wise, row-wise 등 다양한 데이터 추출 방법이 존재. 참고) <a href="https://msdn.microsoft.com/en-us/library/ms714618(v=vs.85).aspx">Retrieving Results (Advanced) |MSDN</a>
+</p>
+    
+<h4>result set 관련 정보 확인</h4>
+<ul>
+    <li><b>SQLDescribeCol(..): </b>result set metadata를 알아내는데 사용</li>
+    <li><b>SQLColAttribute(..): </b>result set metadata를 알아내는데 사용</li>
+    <p>
+        SQLDecscribeCol VS SQLColAttribute <br>
+        <span style="background=#99dd99"> SQLDecscribeCol </span> 은 항상 정해진 5개의 정보를 리턴. <span style="background=#99dd99"> SQLColAttribute </span>는 사용자가 지정한 정보 하나만을 리턴하는 대신에 더욱 다양한 정보에 대해 알아볼 수 있음. <br>
+        <a href="https://msdn.microsoft.com/en-us/library/ms714709(v=vs.85).aspx">SQLDescribeCol and SQLColAttribute |MSDN</a>
+    </p>
+    <li><b>SQLNumResultCols(..): </b>result set의 column 개수를 반환</li>
+    <li><b>SQLRowCount(..): </b><b>UPDATE</b>, <b>INSERT</b>, <b>DELETE</b>로 영향 받는 row의 개수를 반환.</li>
+</ul>
+
+<h3>오류 처리</h3>
+<ul>
+    <li><b>SQLError(..): </b>오류나 스테이터스 정보를 반환</li>
+</ul>
+
+<h3>기타 함수</h3>
+<ul>
+    <li><b>SQLGetInfo(..): </b>connection과 관련된 드라이버와 data source에 관한 전반적인 정보를 반환</li>
+</ul>
+
+
+<h3>reference</h3>
+<ul>
+    <li><a href="https://msdn.microsoft.com/en-us/library/ms711010(v=vs.85).aspx#Anchor_18">SQLBindCol Function Code Example |MSDN</a></li>
+    <li><a href="https://msdn.microsoft.com/en-us/library/hh829589(v=vs.85).aspx">Sample ODBC Program |MSDN</a></li>
+    <li><a href="https://msdn.microsoft.com/ko-kr/library/ms714562(v=vs.85).aspx">ODBC API Reference |MSDN</a></li>
+    <li><a href="https://msdn.microsoft.com/en-us/library/ms709297(v=vs.85).aspx">Retrieving Results (Basic) |MSDN</a></li>
+    <li><a href="http://blog.naver.com/sonpadak/93019494">ODBC API |sonpadak naver blog</a></li>
+    <li><a href="http://www.zdnet.co.kr/news/news_view.asp?artice_id=00000039131033">[MFC로 구현하는 DB 프로그래밍] 2. DB의 다리 ODBC |zdnet</a></li>
+    <li><a href="https://msdn.microsoft.com/ko-kr/library/7wtdsdkh.aspx">Visual C++의 데이터 액세스</a></li>
+    
+</ul>
