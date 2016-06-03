@@ -1,0 +1,55 @@
+title: Return Value Optimization (RVO) 
+tag: c++, programming, c++11
+
+<p>
+    복사 및 이동 생성자를 zero-copy pass-by-value (무복사 값에 의한 전달)로 최적화 하는 것. 특정 상황(아래 서술)에서 객체의 복사 및 이동 생성자를 생략함. 함수의 return 문과 관련되는 경우 이를 RVO(return by value, return의 argument가 생성자인 경우), NRVO(return by value, 함수 내 local variable을 반환하는 경우) 등으로 부르기도 함.
+
+</p>
+
+<h3>RVO (Return Value Optimization)</h3>
+<p>
+    어떤 reference에도 bound되지 않은 nameless temporary 가 복사/이동될 때, 복사/이동 생성자가 생략되고 대신 복사/이동하려는 공간에 직접(바로) 할당됨. nameless temporary 가 return 문의 argument인 경우, 이러한 copy elision을 RVO라 부른다.
+</p>
+
+<h3>NRVO (Named Return Value Optimization)</h3>
+<p>
+    vs2005부터는 이름있는 변수에도 RVO가 적용되기 시작함. <br> 
+    함수가 class type을 값으로 반환하고, 반환문의 expression이 함수의 파라미터나 catch-cluase의 파라미터가 아닐 때, 복사/이동 생성자가 생략되고 대신 복사/이동하려는 공간에 직접(바로) 할당됨. nameless temporary 가 return 문의 argument인 경우, 이러한 copy elision을 NRVO라 부른다. 
+    <blockquote style="background:#99ee99">단, NRVO는 non-debug mode(release mode), 최적화 옵션 /O1에서부터 적용됨. </blockquote>
+</p>
+
+<h3>사용 방법</h3>
+<p>
+    return에 move(..)를 사용하지 않는다. 기본 implementaion은 다음과 같음.
+    <script src="https://gist.github.com/devwoodo/a06a64e9acc31b3be2177048f156b5e3.js"></script>
+    <ul>
+        <li>X에 copy 또는 move constructor가 있으면, 컴파일러가 copy elision을 수행할 수 있음.</li>
+        <li>이외의 경우, X에 move constructor가 있으면, move constructor가 실행됨. </li>
+        <li>이외의 경우, X에 copy constructor가 있으면, copy constructor가 실행됨.</li>
+        <li>이외의 경우, 컴파일 타임 에러가 생략됨.</li>
+    </ul>
+</p>
+
+<h3>주의</h3>
+<p>
+    컴파일러에 따라 디버그 모드 등 특정한 상황에서 copy elision을 수행하지 않기도하므로 주의해야 함.  
+</p>
+
+<h3>example</h3>
+<script src="https://gist.github.com/devwoodo/60e2312b2cd7d4379701a525cae3a26f.js"></script>
+<a href="https://2.bp.blogspot.com/-Zw9G50u4pr4/V1fbRODW0ZI/AAAAAAAAAN8/vgNHvtnas6MoFZK9oEa2DbSqNawwmmnJwCLcB/s1600/result%2Bin%2Bdebug%2Bmode.PNG" imageanchor="1" ><img border="0" src="https://2.bp.blogspot.com/-Zw9G50u4pr4/V1fbRODW0ZI/AAAAAAAAAN8/vgNHvtnas6MoFZK9oEa2DbSqNawwmmnJwCLcB/s320/result%2Bin%2Bdebug%2Bmode.PNG" /></a>&nbsp&nbsp<a href="https://2.bp.blogspot.com/-Bf1Wems8OIk/V1fbUyZH8rI/AAAAAAAAAOE/GZjsbKjsRj4d26HnhABPLGJAgudsUa2XACLcB/s1600/result%2Bwith%2Boption%2528O1%2529%2Bin%2Brelease%2Bmode.PNG" imageanchor="1" ><img border="0" src="https://2.bp.blogspot.com/-Bf1Wems8OIk/V1fbUyZH8rI/AAAAAAAAAOE/GZjsbKjsRj4d26HnhABPLGJAgudsUa2XACLcB/s320/result%2Bwith%2Boption%2528O1%2529%2Bin%2Brelease%2Bmode.PNG" /></a>
+<p>
+    왼쪽: result in debug mode, 오른쪽: result in non-debug mode(release mode) with /O1 option
+</p>
+ 
+<h3>reference</h3>
+<ul>
+    <li><a href="http://ko.cppreference.com/w/cpp/language/copy_elision">copy elision  |cppreference.com</a></li>
+    <li><a href="http://stackoverflow.com/a/4643721">C++ Returning reference to local variable |stackoverflow.com</a></li>
+    <li><a href="http://egloos.zum.com/sweeper/v/1942099">Return value optimiztion (RVO) |tistory:수까락</a></li>
+    <li><a href="https://blog.knatten.org/2011/08/26/dont-be-afraid-of-returning-by-value-know-the-return-value-optimization/">Don’t be Afraid of Returning by Value, Know the Return Value Optimization</a></li>    
+    <li><a href="https://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization">Resource Acquisition Is Initialization |Wiki</a></li>
+    <li><a href="https://msdn.microsoft.com/en-us/library/ms364057(v=vs.80).aspx">Named Return Value Optimization in Visual C++ 2005 |MSDN</a></li>
+    <li><a href="https://social.msdn.microsoft.com/Search/en-US?query=return%20value%20optimization&pgArea=header&emptyWatermark=true&ac=2">MSDN search</a></li>
+    <li>he C++ Standard Library - A Tutorial and Reference by Nicolai M. Josuttis</li>
+</ul>
