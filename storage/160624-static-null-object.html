@@ -1,0 +1,37 @@
+title: reference type의 null 할당을 위한 static null object(<i>NullObject</i>) 정의
+tag:
+
+<h3>Synopsis</h3>
+<p>
+    C++에서 pointer 사용을 줄이기 위해서 가급적 reference type을 사용하려 하는데, pointer가 null 값을 가질 수 있는데 반해 reference type은 null을 가질 수 없어 reference type을 멤버로 갖는 객체 초기화 등에 불편. 이를 해결하기 위해 클래스에 static member로 해당 클래스 타입의 <i>NullObject</i>를 정의하고, 해당 클래스의 reference type이 null 값을 가져야 할 때 이 static null object를 줌.   
+</p>
+<h3>Example</h3>
+<script src="https://gist.github.com/devwoodo/e932fb5eeb3adfdc897e1f4162facada.js"></script>
+<ol>
+    <li>case 1: <i>NullObject</i>가 정상적으로 작동함.</li>
+    <li>case 2: <i>NullObject</i>의 주소를 확인 -> 주소 비교를 통해 현재 object가 <i>NullObject</i>인지 아닌지 체크 가능.</li>
+    <li>case 3: <i>NullObject</i> inheritancy test</li>
+</ol>
+<p>
+    실제 이런 implementation을 사용 시에는 객체가 관련된 프로세스 과정에서 현재 객체가 <i>NullObject</i>인지 아닌지 객체 처리 전에 체크할 수 있는 nullCheck()나 isValid() 등의 멤버 함수를 추가로 정의.
+</p>
+
+
+<h3>더 생각해볼 점</h3>
+<ul>
+    <li><i>NullObject</i>는 const 선언이 되어야할까?</li>
+    <p>
+        <i>NullObject</i>는 변경이 되선 안되므로 const 선언이 되는게 맞지만, 이 경우 이 <i>NullObject</i>를 받는 다른 reference type들도 모두 const 선언이 되어야하는 문제가 있음. 원래 <i>NullObject</i>는 reference type을 단순히 '임시로 초기화' 하기 위한 임시값인데, <i>NullObject</i> 때문에 reference type이 const reference type으로 선언이 되면 이후 이 reference type을 통해 가르킬 다른 객체들의 내부 값 수정이 불가능해짐.
+    </p>
+    <li><i>NullObject</i>가 move 또는 copy 된다면?</li>
+    <p>
+        이 경우도 문제가 생길 것 같은데.. <br> 
+        move constructor나 copy constructor에 <i>NullObject</i>의 move나 copy를 막기 위한 <i>NullObject</i> 검사 과정이 필요함.
+    </p>
+    <li><i>NullObject</i>에 singleton 패턴을 응용할 수 있지 않을까?</li>
+</ul>
+
+<h3>Reference</h3>
+<ul>
+    <li>-</li>
+</ul>
