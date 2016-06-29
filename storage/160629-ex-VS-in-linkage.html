@@ -1,0 +1,18 @@
+title: external linkage VS internal linkage
+tag: 
+
+<p>
+    컴파일러는 컴파일 시 translation unit을 생성함.
+    <blockquote style="background:#99ee99">
+        translation unit
+        implementation file(*.cpp, *.cxx)에서 생성된 object 파일과 이 파일에서 include 된 모든 헤더 파일을 합친 것.
+    </blockquote>
+    Internal linkage란 이 translation unit 안의 범위에 있는 것을 의미. 반대로 External linkage란 특정 translation unit의 외부에서도 존재하는 것(즉, 프로그램 어디서든(선언된 파일이 아닌 다른 파일에서도) 접근이 가능한 변수)을 의미. <br>
+    예를 들어, static은 internal linkage를 가지며 선언된 파일 안에서만 접근이 가능함. 반면에 global variable은 external linkage를 가지며 선언된 파일 바깥에서도 extern 선언만 하면 프로그램 어디서든 접근이 가능함.
+</p>
+
+<h3>Reference</h3>
+<ul>
+    <li><a href="http://stackoverflow.com/questions/1358400/what-is-external-linkage-and-internal-linkage-in-c">What is external linkage and internal linkage in C++ |stackoverflow.com</a></li>
+    <li><a href="http://stackoverflow.com/questions/2271902/static-vs-global">Static vs global |stackoverflow.com</a></li>
+</ul>
