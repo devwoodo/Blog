@@ -1,0 +1,30 @@
+title: enum, enum VS enum class(struct)
+tag: 
+
+<h3><span style="background:#99ee99">enum </span></h3>
+<ul>
+    <li>enum(enumeration)</li>
+    <li>enumerator: namespace 안에 const 선언된 값</li>
+    <li>enum은 하나의 자료형으로 취급돼, 이를 param.로 받는 함수의 overloading 가능</li>
+</ul>
+ 
+<h3><span style="background:#99ee99">enum </span> VS <span style="background:#99ee99">enum class(struct) </span></h3>
+<ul>
+    <li><span style="background:#99ee99">enum </span> (= unmanaged enum = standard enum)</li>
+    <p>
+        namespace가 구분되지 않기 때문에 같은 이름의 enumerator가 존재할 수 없음.
+    </p>
+    <li><span style="background:#99ee99">enum class</span> (= unmanaged enum = C++/CX enum)</li>
+    <p>
+        각각 자신의 namespace가 있어 같은 이름의 enumberator를 가질 수 있음.
+    </p>
+</ul>
+<script src="https://gist.github.com/devwoodo/cd801c9aaa41251e10ec299ec623bdd3.js"></script>
+
+<h3>Reference</h3>
+<ul>
+    <li><a href="https://msdn.microsoft.com/ko-kr/library/a6cskb49.aspx">enum class |MSDN</a></li>
+    <li><a href="http://www.cplusplus.com/forum/general/147341/">Enum vs enum class C++11 |cplusplus.com</a></li>
+</ul>
+
+<span style="background:#99ee99"></span>
