@@ -1,0 +1,43 @@
+title: [EC++ 03] Use <span style="background:#99ee99">const </span> whenever possible.
+tag: 
+
+<p>
+    const가 붙는 위치에 따른 의미 변화
+</p>
+<script src="https://gist.github.com/devwoodo/f74da58643f85c328c44ed36dec9cca0.js"></script>
+<p>
+    operator overloading 의 반환구에 <span style="background:#99ee99">const </span>를 붙여줌.
+    <blockquote style="background:#99ee99">const Test</blockquote>
+</p>
+
+<h3>const Member Functions</h3>
+<ol>
+    <li>member function에 쓰이는 <span style="background:#99ee99">const </span>의 목적은 const object로 member function을 불렀을 때 어느 member function이 불릴지 판별하는 것. member function에 <span style="background:#99ee99">const </span>를 붙이는 이유는 크게 두가지.</li>
+    <ol>
+        <li>object 내용을 수정하는 함수와 그렇지 않은 함수를 구분할 수 있게 함.</li>
+        <li>
+            <span style="background:#99ee99">const </span> object를 이용한 작업을 가능하게 하는데, 이는 C++의 성능 향상을 이루는 매우 중요한 방법 중 하나임(EC++ 20 참조).
+    </ol>
+    <li>const에는 physical constantness와 logical constantness의 두가지 개념이 존재. </li>
+    <li>const member function 안에서도 특정 member field를 수정해야하는 경우가 있는데, 이러한 member field에 키워드 <span style="background:#99ee99">mutable</span>을 붙이면 수정이 가능.</li> 
+</ol>
+
+<h3>Avoiding Duplication in const and Non-const Member Functions</h3>
+<p>
+    같은 함수를 const 버전과 non-const 버전으로 구현하는 과정에서의 코드 중복을 막을 수 있는 방법.
+</p>
+<script src="https://gist.github.com/devwoodo/b14d370f82471feb3845936eeaf446b9.js"></script>
+
+<h3>Summary</h3>
+<ul>
+    <li>Declatring something const helps compilers detect usage errors. const can be applied to objects at any scope, to function parameters and return types, and to member functions as a whole.</li>
+    <li>Compilers enforce bitwise constness, but you should program using logical constness.</li>
+    <li>When const and non-const member functions have essentially identical implementations, code duplication can be avoided by having the non-const version call the const version.</li>
+</ul>
+
+<h3>Reference</h3>
+<ul>
+    <li>Effective C++ by Scott Meyers</li>
+</ul>
+
+<span style="background:#99ee99"></span>

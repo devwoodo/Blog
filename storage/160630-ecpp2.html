@@ -1,0 +1,44 @@
+title: [EC++ 02] Prefer <span style="background:#99ee99">const</span>s, <span style="background:#99ee99">enum</span>s, and <span style="background:#99ee99">inline</span>s to <span style="background:#99ee99">#define</span>s.
+tag: 
+
+<p>
+    <span style="background:#99ee99">#define</span> 으로 정의한 상수는 preprocessor에 의해 처리가 되어 컴파일러에 잡히지 않는다. 따라서 이 부분에서 실수가 일어나도 컴파일러가 이를 알려줄 수 없기 때문에, 가급적이면 <span style="background:#99ee99">#define</span>의 다른 대체제를 사용하는 것이 좋다.
+</p>
+<h3>const</h3>
+<p>
+    <span style="background:#99ee99">#define</span>을 constants로 바꿔줄 때, 두가지 경우를 고려할 수 있다.
+    <ul>
+        <li>Defining constant pointer</li>
+        <p>
+            const 위치에 따른 의미 변화에 유의. [EC++ 03]에서 자세히 다룸.
+        </p>
+        <li>Class-specfic constants</li>
+        <p>
+            <blockquote>
+                <span style="background:#99ee99">static const int value = 5;</span>
+            </blockquote>            
+        </p>
+    </ul>
+</p>
+
+<h3>enum</h3>
+<p>
+    "<span style="background:#99ee99">enum</span> hack"
+</p>
+<h3>inline</h3>
+<p>
+    <span style="background:#99ee99">#define</span> function을 정의할 때는 문의 괄호에 반드시 신경써야 함.
+</p>
+
+<h3>Summary</h3>
+<ul>
+    <li>For simple constants, prefer const objects or enums to #defines.</li>
+    <li>For function-like macros, prefer inline functions to #defines.</li>
+</ul>
+
+<h3>Reference</h3>
+<ul>
+    <li>Effective C++ by </li>
+</ul>
+
+<span style="background:#99ee99"></span>
