@@ -1,0 +1,23 @@
+title: [EC++ 06] Explicityly disallow the use of compiler-generated functions you do not want. 
+tag: 
+
+<ul>
+    <li>방법1. member function을 private으로 선언하고 implementing을 하지 않음.</li>
+    <li>방법2. member function call을 막는 base class를 생성하고 이를 상속함.</li>
+    <script src="https://gist.github.com/devwoodo/6ff1cc72c4651c6419e1042bb2b9d11b.js"></script>
+    <p>
+        단, 이 경우 multiple inheritance 가 되어 empty base class optimization (Item 40) 같은 몇가지 사소한 문제를 일으킬 수 있음. 
+    </p>
+</ul>
+
+<h3>Summary</h3>
+<ul>
+    <li>To disallow functionality automatically provided by compilers, declare the corresponding member functions private and give no implementations. Using a base class like <b>Uncopyable</b> is one way to do this.</li>
+</ul>
+
+<h3>Reference</h3>
+<ul>
+    <li>Effective C++ by Scott Meyers</li>
+</ul>
+
+<span style="background:#99ee99"></span>
