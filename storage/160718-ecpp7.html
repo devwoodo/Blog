@@ -1,0 +1,32 @@
+title: [EC++ 07] Declare destructors virtual in polymorphic base classes.  
+tag: 
+
+<ul>
+    <li>Partial destruction problem</li>
+    <p>
+        Base class pointer로 derived 객체를 가르키고 있을 때, 객체가 해제되면 base class의 dtor가 call됨. 이 경우 derived 객체에서 base class 부분의 resource는 해제되지만 derived class의 resource가 
+        해제되지 않아 resource leak 발생하는데, 이를 partial destruction이라고 함.
+    </p>
+    <li>Partial destruction을 막는 방법</li>
+    <p>
+        Base class 의 dtor를 virtual로 선언. 단, 어떤 클래스가 base class 로 쓰이지 않는데도 virtual detruction을 implementation하는 것은 좋지 않음. 클래스에 virtual function이 있는 경우 virtual function을 관리하는 vtbl("virtual table")을 가르키는 vptr("virtual pointer")를 객체가 가지게 되는데, 이 때문에 객체의 크기가 커지게 됨.
+    </p>
+    <li>Destructor call order</li>
+    <p>
+        Derived class의 destructor부터 call되고 base class의 dtor가 마지막에 call됨.
+    </p>
+    
+</ul>
+
+<h3>Summary</h3>
+<ul>
+    <li>Polymorphic base classes should declare virtual desturctors. If a class has any virtual functions, it should have a virtual destructor.</li>
+    <li>Classes not designed to be base classes or not designed to be used polymorphically should not declare virtual destructors.</li>
+</ul>
+
+<h3>Reference</h3>
+<ul>
+    <li>Effective C++ by Scott Meyers</li>
+</ul>
+
+<span style="background:#99ee99"></span>
