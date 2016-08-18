@@ -1,0 +1,26 @@
+title: cin에서 space를 입력받는 방법
+tag: troubleshooting
+
+<h3>문제점</h3>
+<p>
+    cin을 통해 값을 입력 받을 때 중간에 space가 있는 경우(주소, 이름 등), input의 space가 같이 저장되지 않고 space 별로 짤려서 각각 저장됨. 
+</p>
+<h3>원인분석</h3>
+<p>
+    cin은 white space를 구분자로 삼기 때문에 input 중간에 space가 있으면 이를 white space 구분자로 인식, input을 하나로 저장하는 것이 아니라 white space 별로 잘라서 저장함.
+</p>
+
+<h3>해결책</h3>
+<p>
+    <span style="background:#99ee99">std::getline(..)</span>을 사용. 
+    //rev 예제 코드 입력
+</p>
+
+<h3>Reference</h3>
+<ul>
+    <li><a href="http://stackoverflow.com/a/5838803">C++ cin input with spaces? |stackoverflow.com</a></li>
+    //rev std::getline(..) reference page
+</ul>
+
+
+<span style="background:#99ee99"></span>
