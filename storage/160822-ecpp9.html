@@ -1,0 +1,31 @@
+title: [EC++ 09] Never call virtual functions during construction or destruction.   
+tag: 
+
+<ul>    
+    <li>virtual function 뿐만 아니라 <span style="background:#99ee99">dynamic_cast</span>나 <span style="background:#99ee99">typeid</span> 같은 language의 RTTI(runtime type information) 파트에서도 Derived object 의 base class construction 중에는 그 object의 타입이 base class 인 것으로 인식.</li>
+    <p>
+        Derived object의 base class member 부분을 초기화하는 동안, 이 객체는 base class 객체인 것으로 인식됨. Derived object 의 derived class member 부분이 초기화 되기 시작한 후에야 이 객체는 derived class 로 인식됨. 
+    </p>
+    <li>ctor 내에서 virtual func.을 직접 부르는 것뿐만 아니라, <span style="background:#99ee99">init()</span>과 같은 함수를 통해 간접적으로 부르는 것도 마찬가지 이유로 불가.</li>
+</ul>
+
+<h3>해결책</h3>
+<ul>
+    <li>유일한 해결책은 ctor 나 dtor에서 virtual func. 을 부르지 않는 것.</li>
+    <li>다른 방법으로 해당 func. 을 virtual 대신 일반 func.으로 구현하고, construction 과정에서 필요한 정보를 ctor의 param.로 넘겨주는 방법을 사용.</li>
+    <p>
+        이 때, param. 를 넘겨주는 helper func.을 (private) static func.으로 구현하면 좋음. func. 을 static으로 구현함으로써 helper func. 내에서 아직 initialize 되지 않은 data member 를 부르는 실수를 막을 수 있음. 
+    </p>
+</ul>
+
+<h3>Summary</h3>
+<ul>
+    <li>Don't call virtual functions during construction or destruction, because such calls will never go to a more derived class than that of the currently executing constructor or destructor.</li>
+</ul>
+
+<h3>Reference</h3>
+<ul>
+    <li>Effective C++ by Scott Meyers</li>
+</ul>
+
+<span style="background:#99ee99"></span>
