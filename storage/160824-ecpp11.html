@@ -1,0 +1,39 @@
+title: [EC++ 11] Handle assignment to self in <span style="background:#99ee99">operator=</span>. 
+tag: 
+
+<h3>Objective</h3>
+<ol>
+    <li>self-assignment-safe</li>
+    <li>exception-safe</li>
+</ol>
+
+<h3>self-assignment problem</h3>
+<p>
+    객체가 자기자신에게 assignment를 할 때 self-assignment가 발생. <span style="background:#99ee99">operator=</span> 구현 과정에서 dest. 객체가 유지하고 있던 resource를 해제하고 source. 객체의 resource를 복사한다. 그런데 self-assignment인 경우, dest. 객체와 source. 객체가 동일하다. 따라서 dest. 객체의 resource를 해제하면 source. 객체의 resource 역시 해제되어 아무 것도 남지 않게되서 operation이 의도와 다르게 작동하게되는데, 이를 self-assignment problem이라 한다.   
+</p>
+<p>
+    self-assignment problem은 dest. 객체와 source. 객체가 같은 객체인지 비교하는 과정을 삽입함으로써 해소할 수 있다.
+</p>
+
+<h3>exception-safe</h3>
+<p>
+     assignment operation 과정에서 dest.객체의 resource를 해제한 뒤, 새로운 resource를 (복사)할당 받아 dest.의 resource로 넘겨주는데, 할당 과정에서 exception이 발생할 경우 operation이 의도한대로 작동하지 않을 수 있다. 이런 경우 statement의 순서를 조정하여 exception에 보다 견고한 동시에 self-assignment problem 에서도 안전한 코드를 만들 수 있으며 크게 3가지 방식으로 이를 구현한다. 
+</p>
+<ul>
+    <li>menually ordering statements.</li>
+    <li>"copy and swap" technique</li>
+    <li>variation of "copy and swap" technique</li>
+</ul>
+
+<h3>Summary</h3>
+<ul>
+    <li>Make sure of <span style="background:#99ee99">operator=</span> is well-behaved when an object is assigned to itself. Techniques include comparing addresses of source and target objects, careful staterment ordering, and copy-and-swap.</li>
+    <li>Make sure that any function operating on more than one object behaves correctly if two or more of the objects are the same.</li>
+</ul>
+
+<h3>Reference</h3>
+<ul>
+    <li>Effective C++ by Scott Meyers</li>
+</ul>
+
+<span style="background:#99ee99"></span>
