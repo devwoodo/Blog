@@ -1,0 +1,41 @@
+title: [EC++ 12] Copy all parts of an object.   
+tag: 
+
+<h3>Objective</h3>
+<ul>
+    <li>copy all local data member</li>
+    <li>invoke the appropriate copying function in all base classes</li>
+</ul>
+
+<h3></h3>
+<p>
+    잘 정의된 object-oriented system은 copy constructor, copy assignment operator 오직 두가지의 func.을 통해서만 객체 복사를 허용한다. 이 두 함수를 직접 정의하지 않는 경우 컴파일러가 default 함수를 대신 정의해주지만, 필요한 경우 사용자가 두 함수를 직접 정의할 수도 있다. 그러나 이 경우 새로운 data member가 클래스에 추가될 때는 copy funcions에도 반드시 이를 반영해야 한다. 만약 사용자가 실수로 추가된 data member의 복사를 빼놓더라도 컴파일러에선 아무런 경고를 해주지 않는다. 
+    <blockquote style="background:#99ee99">
+        새로운 data member가 클래스에 추가되었을 때<br>
+        <ol>
+            <li>모든 copying functions update</li>
+            <li>모든 ctor update</li>
+        </ol>
+        실수로 update를 하지않더라도 컴파일러는 어떤 경고도 하지 않으므로 주의.
+    </blockquote>
+    derived class의 copy functions을 구현하는 경우에는 base class 부분도 반드시 고려를 해야한다. 따라서, derived class의 copy functions 안에서 base class의 copy functions을 반드시 호출해줘야 한다.
+</p>
+
+<h3>copy functions 간의 중복 코드 제거</h3>
+<p>
+    한 copy function에서 다른 copy function을 호출하는 것은 피해야 한다. 특정 상황에서 객체가 오염될 수 있으며 논리적으로도 맞지 않기 때문이다. 꼭 중복 코드를 제거하고 싶다면 copy functions 안에서 공통적으로 호출되는 <span style="background:#99ee99">init(..)</span> 과 같은 별개의 함수를 private으로 정의하는 것이 좋은 방법이다.  
+</p>
+
+
+<h3>Summary</h3>
+<ul>
+    <li>Copying functions should be sure to copy all of an object's data members and all of its base class parts.</li>
+    <li>Don't try implement one of the copying functions in terms of the other. Instead, put common functionality in a third function that both call.</li>
+</ul>
+
+<h3>Reference</h3>
+<ul>
+    <li>Effective C++ by Scott Meyers</li>
+</ul>
+
+<span style="background:#99ee99"></span>
