@@ -1,0 +1,44 @@
+title: [EC++ 13] Use objects to manage resources.   
+tag: 
+
+
+<p>
+    Resource 를 object 안에 넣고 이 object의 dtor가 resource를 해제하도록 하여, 사용이 끝난 Resource의 해제를 보장할 수 있다. 
+</p>
+
+<h3><span style="background:#99ee99"> auto_ptr </span></h3>
+<ul>
+    <li>Resource를 획득하여 바로 resource-managing objects로 넘김 </li>
+    <blockquote style="background:#99ee99">
+        Resource Acquisition Is Initialization(RAII) 
+        objects를 사용하여 Resources 를 관리하는 것.
+    </blockquote>
+    <li>Resource-managing objects는 resource의 해제를 보장하기 위해 dtor를 사용 </li>
+</ul>
+<p>
+    단, auto_ptr 은 소유권을 공유하지 않기 때문에 auto_ptr a에서 auto_ptr b로 복사시 a는 NULL이 되어버림.
+</p>
+
+<h3>Reference-Counting Smart Pointer (RCSP)</h3>
+<p>
+    배타적인 소유권을 갖는 auto_ptr과 달리 shared_ptr은 소유권을 공유할 수 있다. 클래스가 소유권을 공유하는 객체들의 수를 기록하는 reference counter를 멤버로 가지고 있어서, 소유권을 공유하는 객체들의 숫자가 0이 되면 resource가 해제된다. <br>
+    단, RCSP는 cycles of references(ex.객체가 서로를 가르키고 있는 경우)에 빠지는 경우 제대로 동작하지 않는다는 단점이 있다.
+</p>
+
+<h3>또 다른 유의점</h3>
+<p>
+    std::auto_ptr 과 shared_ptr 의 dtor는 (<span style="background:#99ee99">delete[] </span>가 아니라 <span style="background:#99ee99">delete </span>를 호출한다. 따라서 이들 객체가 관리하는 resource가 배열인 경우 올바르게 작동하지 않는다. 이런 경우 custom deleter를 지정하여 resource가 적절한 방식으로 해제될 수 있도록 신경써야 한다. 
+</p>
+
+<h3>Summary</h3>
+<ul>
+    <li>To prevent resource leaks, use RAII objects that acquire resources in their constructors and release them in their destructors.</li>
+    <li>Two commonly useful RAII classes are <span style="background:#99ee99">tr1::shared_ptr </span> and <span style="background:#99ee99">auto_ptr</span>. <span style="background:#99ee99">tr1::shared_ptr </span> is usually the better choice, because its behavior when copied is intuitive. Copying an <span style="background:#99ee99">auto_ptr</span> sets it to null.</li>
+</ul>
+
+<h3>Reference</h3>
+<ul>
+    <li>Effective C++ by Scott Meyers</li>
+</ul>
+
+<span style="background:#99ee99"></span>
