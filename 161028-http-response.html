@@ -1,0 +1,74 @@
+title: HTTP Response
+tag: 
+
+<h3>내용</h3>
+<p>
+    HTTP Response 는 HTTP Request 에 대한 응답 패킷. 서버에서 쓰이고 있는 프로토콜 버전, Request에 대한 실행 결과 코드(HTTP Status code), 간략한 실행 결과 설명문(OK 등)이 담겨 있으며, 전달할 데이터 형식, 데이터 길이 등 추가 정보가 MIME 형식으로 표현되어 있음. 그리고 헤더 정보 뒤에는 실제 데이터가 담겨 있음.
+</p>
+
+<h3>HTTP Status code (HTTP Response의 실행 결과 코드)</h3>
+<h4>
+1XX (조건부 응답)</h4>
+<p>
+요청을 받았으며 작업을 계속함을 의미.
+</p>
+<h4>
+2XX (성공)</h4>
+<p>
+클라이언트의 요청을 수신하여 이해하고 승낙했으며, 성공적으로 처리했음을 의미
+</p>
+<ul>
+<li>200(Ok)</li>
+<li>201(Create)</li>
+<li>202(Accepted)</li>
+<li>203(Non-Authoritative Information)</li>
+<li>204(No Content)</li>
+<li>205(Reset Content)</li>
+<li>...</li>
+</ul>
+
+<h4>
+3XX (리디렉션 완료)</h4>
+<p>
+요청을 마치기 위해 클라이언트가 추가 동작을 취해야 하는 경우
+</p>
+
+<h4>
+4XX (요청 오류)</h4>
+<p>
+클라이언트에 오류가 있는 경우
+</p>
+<ul>
+<li>400(Bad Request) : 서버가 요청의 구문을 인식하지 못함</li>
+<li>401(Unauthorized) : 이 요청은 인증이 필요함</li>
+<li>403(Forbidden) : 서버가 요청을 거부함</li>
+<li>404(Not Found) : 서버가 요청 받은 페이지를 찾을 수 없음</li>
+<li>405(Method Not Allowed) : 요청에 지정된 방법을 사용할 수 없음</li>
+<li>406(Not Acceptable)</li>
+<li>408(Request Timeout) : 서버의 요청대기가 시간을 초과함</li>
+<li>...</li>
+</ul>
+
+<h4>
+5XX (서버 오류)</h4>
+<p>
+유효한 요청을 서버가 명백히 수행하지 못했음을 의미
+</p>
+<ul>
+<li>500(Internal Server Error) : 서버에 오류 발생해 요청을 수행할 수 없음</li>
+<li>501(Not Implemeted) : 서버에 요청을 수행할 수 있는 기능이 없음. ex) 서버가 요청 메소드를 인식하지 못할 때</li>
+<li>502(Bad Gateway) : 잘못된 응답을 받음</li>
+<li>503(Service Unavailable) : 서버가 오버로드 되거나 유지 보수를 위해 다운됨. 대게 일시적인 상태</li>
+<li>504(Gateway Timeout) : 제 때 응답을 받지 못함</li>
+<li>...</li>
+</ul>
+
+<h3>
+reference</h3>
+<ul>
+    <li><a href="http://terms.naver.com/entry.nhn?docId=3431905&cid=58437&categoryId=58437&expCategoryId=58437">HTTP Response |Naver 지식백과</a></li>
+<li><a href="https://ko.wikipedia.org/wiki/HTTP_%EC%83%81%ED%83%9C_%EC%BD%94%EB%93%9C#5xx_.28.EC.84.9C.EB.B2.84_.EC.98.A4.EB.A5.98.29">HTTP 상태 코드 |Wiki</a></li>
+<li><a href="http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">Hypertext Transfer Protocol (HTTP) Status Code Registry</a></li>
+<li><a href="https://tools.ietf.org/html/rfc7231#page-63">Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content</a></li>
+</ul>
+

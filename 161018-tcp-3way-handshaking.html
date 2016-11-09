@@ -1,0 +1,60 @@
+title: TCP 3-way handshaking, 4-way handshaking 
+tag: 
+
+<ul>
+    <li>SYN : 시퀀스 동기화 요청</li>
+    <li>ACK : 패킷을 받았다는 응답. 다음에 받을 시퀀스 넘버를 가지고 있음.</li>
+    <li>FIN : 연결 종료 요청</li>
+</ul>
+
+
+
+<h3>3-way handshaking: Connection establishment</h3>
+<ol>
+    <li>Step1</li>
+    <p>
+        Initiator[CLOSED]가 SYN(To Receiver)를 전송. Initiator는 전송한 SYN(To Receiver)에 대한 ACK를 기다리는 Initiator[SYN-SENT]로 전환.
+    </p>
+    <li>Step2</li>
+    <p>
+        Receiver[LISTEN]가 SYN(From Initiator)에 대한 ACK와 SYN(To Initiator)를 전송. SYN(To Initiator)에 대한 ACK를 기다리는 Receiver[SYN-RECEIVED]로 전환. <br>
+        Initiator[SYN-SENT]가 ACK(From Receiver)를 받으면 Initiator[ESTABLISHED]로 전환. 받은 SYN(From Receiver)에 대한 ACK를 전송. 
+    </p>
+    <li>Step3</li>
+    <p>
+        Receiver[SYN-RECEIVED]가 ACK(From Initiator)를 받으면 Receiver[ESTABLISHED]로 전환. TCP 연결이 확립, 데이터 교환이 가능.
+    </p>
+</ol>
+
+<h3>4-way handshaking: Connection termination</h3>
+<p>
+    세 방향 핸드셰이크는 네트워크로 연결된 미디어를 통해 세 개의 패킷만 전송하면 되지만 이 신뢰성 있는 연결을 종료하려면 네 개의 패킷을 전송해야 합니다. TCP 연결은 데이터가 서로에 관계 없이 각 방향으로 흐를 수 있는 전이중이기 때문에 각 방향으로 개별적으로 전송해야 합니다. 
+</p>
+<ol>
+    <li>Step1</li>
+    <p>
+        Terminator[ESTABLISHED]가 FIN(From Terminator)를 전송. FIN(From Terminator)에 대한 ACK를 기다리는 Terminator[FIN-WAIT-1]으로 전환.
+    </p>
+    <li>Step2</li>
+    <p>
+        Receiver[ESTABLISHED]가 FIN(From Terminator)에 대한 ACK를 전송. 어플리케이션에게 close 알리고 Receiver[CLOSE-WAIT]로 전환. <br>
+        Terminator[FIN-WAIT-1]은 ACK(From Receiver)를 받으면, FIN(From Receiver)를 기다리는 Terminator[FIN-WAIT-2]로 전환.
+    </p>
+    <li>Step3</li>
+    <p>
+        Receiver[CLOSE-WAIT]는 어플리케이션이 close할 준비가 되면 FIN(To Terminator)를 전송. Fin(To Terminator)에 대한 ACK를 기다리는 Receiver[LAST-ACK]로 전환. <br>
+        Terminator[FIN-WAIT-2]는 FIN(From Receiver)를 받으면 ACK를 전송하고, terminating process 전에 전송되었을지 모르는 패킷을 기다리는 Terminator[TIME-WAIT]로 전환. 일정시간 동안 여분의 패킷을 기다린 후 연결 종료 Terminator[CLOSED].
+    </p>
+    <li>Step4</li>
+    <p>
+        Receiver[LAST-ACK]는 ACK(From Terminator)를 받으면, 연결을 종료 Receiver[CLOSED]. 
+    </p>
+</ol>
+
+<h3>reference</h3>
+<ul>
+    <li><a href="http://mindnet.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EC%89%BD%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-22%ED%8E%B8-TCP-3-WayHandshake-4-WayHandshake">[ 네트워크 쉽게 이해하기 22편 ] TCP 3 Way-Handshake & 4 Way-Handshake</a></li>
+    <li><a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol">Transmission Control Protocol</a></li>
+    <li><a href="https://support.microsoft.com/ko-kr/kb/172983">TCP/IP를 통한 세 방향 핸드셰이크에 대한 설명 |MSDN</a></li>
+    <li><a href="https://tools.ietf.org/html/rfc793">TCP Standard</a></li>
+</ul>
