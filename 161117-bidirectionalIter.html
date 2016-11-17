@@ -1,0 +1,31 @@
+title: Bidirectional Iterator
+tag: 
+
+//rev header structures
+
+<h3>Bidirectional Iterator</h3>
+<p>
+    유효한 범위의 sequance of element에서 begin, end 양방향의 element에 모두 access 가능한 iterator. 모든 Bidirectional iterator 는 Forward Iterator. 
+</p>
+
+<h3>Funtionalities of Bidirectional Iterator</h3>
+<ul>
+    <li>Default/copy/copy-assignment constructible ex) <span style="background:#99ee99">X it1; </span>, <span style="background:#99ee99">X it2(it1); </span>, <span style="background:#99ee99">it2 = it1; </span></li>
+    <li>In/Equality operator ex) <span style="background:#99ee99">it1==it2</span>,  <span style="background:#99ee99">it1!=it2</span></li>
+    <li>Dereference as R-value ex) <span style="background:#99ee99">*it1</span>, <span style="background:#99ee99">it1->m</span></li>
+    <li>Dereference as L-value ex) <span style="background:#99ee99">*it1 = t</span></li>
+    <li>Increment ex) <span style="background:#99ee99">++it1</span>, <span style="background:#99ee99">it1++</span></li>
+    <li>Decrement ex) <span style="background:#99ee99">--it1</span>, <span style="background:#99ee99">it1--</span></li>
+    <li>L-value are swappable ex) <span style="background:#99ee99">swap(it1, it2)</span></li>
+</ul>
+<p>
+    X는 Bidirectional iterator type, m은 가르키는 멤버, t는 iterator가 가르키는 타입의 object.
+</p>
+
+<h3>reference</h3>
+<ul>
+    <li><a href="http://www.cplusplus.com/reference/iterator/BidirectionalIterator/">Bidirectional iterators |cplusplus</a></li>
+    <li><a href="http://en.cppreference.com/w/cpp/concept/BidirectionalIterator">BidirectionalIterator |cppreference</a></li>
+</ul>
+
+<span style="background:#99ee99"></span>
