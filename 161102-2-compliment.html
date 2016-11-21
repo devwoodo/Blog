@@ -1,17 +1,41 @@
 title: 
-tag: 
+tag:
+
+<h3>보수(complement)란?</h3>
+<p>
+    각 자리의 숫자의 합이 어느 일정한 수가 되게 하는 수.
+</p>
+
 <h3>1의 보수</h3>
 <p>
-    binary 에서 원래
+    binary 에서 원래 수를 반대로 뒤집은 것.
 </p>
+<blockquote>    
+    6: 00000110
+    6에 대한 1의 보수: 11111001
+</blockquote>
 
 <h3>2의 보수</h3>
 <p>
-    binary에서 음수를 표현하는 과정에서 도입된 개념.
-    binary에서 원래 값을 뒤집은 후 1을 더한 것으로 원래 값의 음수에 해당함.
+    원래 값의 1의 보수를 취한 후 1을 더한 것으로 원래 값의 음수에 해당. 2의 보수는 binary에서 음수를 표현하는 과정에서 도입된 개념. 최상위 비트 하나를 음수를 표현하는 경우 +0(00000000)과 -0(11111111)의 두개의 0이 존재하는 문제가 발생하는데 2의 보수법으로 이런 문제를 피해갈 수 있음.  
 </p>
+<blockquote>
+    6: 00000110
+    -6 (6에 대한 2의 보수): 11111010
+</blockquote>
+
+<h3>Binary subtraction</h3>
+<p>
+    6 - 3 = 6 + (-3) <br>
+    00000110 - 00000011 = 00000110 + 11111101 = 00000011
+</p>
+
 <h3>reference</h3>
 <ul>
+    <li><a href="http://zapiro.tistory.com/entry/%EC%BB%B4%ED%93%A8%ED%84%B0%EC%9D%98-%EC%9D%8C%EC%88%98-%ED%91%9C%ED%98%84%EB%B2%95%EB%B3%B4%EC%88%98%EB%B2%95">컴퓨터의 음수 표현법(보수법, 컴퓨터 뺄셈 연산의 원리)</a></li>
+    <li><a href="http://mayple.tistory.com/entry/C-%EC%9D%B4%EC%A7%84%EC%88%98%EC%9D%98-%EB%B3%B4%EC%88%98%EA%B3%84%EC%82%B0%EB%B2%95">[C++] 이진수의 보수계산법</a></li>
+    <li><a href="https://ko.wikipedia.org/wiki/2%EC%9D%98_%EB%B3%B4%EC%88%98#C_.ED.94.84.EB.A1.9C.EA.B7.B8.EB.9E.98.EB.B0.8D_.EC.96.B8.EC.96.B4.EC.97.90.EC.84.9C_2.EC.9D.98_.EB.B3.B4.EC.88.98">2의 보수 |Wiki</a></li>
+    <li><a href="https://ko.wikipedia.org/wiki/1%EC%9D%98_%EB%B3%B4%EC%88%98">1의 보수 |Wiki</a></li>
 </ul>
 
 <span style="background:#99ee99"></span>
