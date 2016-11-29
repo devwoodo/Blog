@@ -1,0 +1,25 @@
+title: rdbuf() : 서로 다른 두 스트림을 연결 
+tag: 
+
+<h3>std::ios::rdbuf()</h3>
+<p>
+    일부 derived stream class(<span style="background:#99ee99">stringstream</span> or <span style="background:#99ee99">fstream</span> 등)는 객체 생성 시에 associated 된 internal stream buffer를 가진다. rdbuf는 stream의 associated stream buffer를 변경하는 함수로, stream buffer 자체에는 아무련 영향을 주지 않는다.
+</p>
+<p>
+    cin/ifstream, 혹은 cout/ofstream 등, 서로 다른 두 stream을 한 스트림에서 다른 스트림으로 리디렉시키는데 사용한다. 예를 들어 어떤 프로그램에서 input을 console과 cin을 통해 입력받는데, input을 입력받는 코드 부분을 수정하지 않고 file stream을 통해서 입력을 받도록 프로그램을 수정하고 싶을 때 유용하게 사용할 수 있다.
+</p>
+<blockquote>    
+    (1) streambuf* rdbuf() const;
+    (2) streambuf* rdbuf(streambuf* sb);
+</blockquote>
+<p>
+    (1) accessor. 현재 stream의 associated streambuf의 포인터를 리턴. <br>
+    (2) mutator. 현재 stream의 associated streambuf를 sb로 바꾸고 stream의 <i>error state flags</i>를 초기화. 이전 associated streambuf의 포인터를 리턴. 
+</p>
+
+<h3>reference</h3>
+<ul>
+    <li><a href="http://www.cplusplus.com/reference/ios/ios/rdbuf/">rdbuf() |cplusplus.com</a></li>
+</ul>
+
+<span style="background:#99ee99"></span>
