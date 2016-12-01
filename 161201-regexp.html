@@ -1,0 +1,49 @@
+title: Regular expression 정규 표현식
+tag: 
+
+<h3>Regular expression이란?</h3>
+<p> 
+    정규표현식 혹은 정규식이라고도 부른다. Regular expression(regex or regexp)은 특정한 규칙을 가진 문자열을 표현하는데 사용하는 형식 언어이다. regex는 VIM, EMACS 등 많은 텍스트 편집기와 다양한 프로그래밍 언어에서 문자열의 검색과 치환을 위해 지원하고 있다.   
+</p>
+<p>
+    regex 문법은 편집기 별로, 프로그래밍 언어별로 전체적으로는 비슷하지만 조금씩 다른 부분이 있기 때문에, 사용 시에는 이런 부분에 유의하며 사용해야 한다. 
+</p>
+
+<h3>요소</h3>
+<ul>
+    <li><span style="background:#99ee99">abc... </span> &nbsp<i> letters</i></li>
+    <li><span style="background:#99ee99">123... </span> &nbsp<i> digits</i></li>
+    <li><span style="background:#99ee99">\d </span> &nbsp<i> any digits</i></li>
+    <li><span style="background:#99ee99">\D </span> &nbsp<i> any non-digit character</i></li>
+    <li><span style="background:#99ee99">. </span> &nbsp<i> Any character</i></li>
+    <li><span style="background:#99ee99">\. </span> &nbsp<i> period</i></li>
+    <li><span style="background:#99ee99">[abc] </span> &nbsp<i> only a, b, or c</i></li>
+    <li><span style="background:#99ee99">[^abc] </span> &nbsp<i> not a, b, nor c</i></li>
+    <li><span style="background:#99ee99">[a-z] </span> &nbsp<i> chracters a to z</i></li>
+    <li><span style="background:#99ee99">[0-9] </span> &nbsp<i> numbers 0 to 9</i></li>
+    <li><span style="background:#99ee99">\w </span> &nbsp<i> any alphanumeric character</i></li>
+    <li><span style="background:#99ee99">\W </span> &nbsp<i> any non-alphanumeric character</i></li>
+    <li><span style="background:#99ee99">{m} </span> &nbsp<i> m repetitions</i></li>
+    <li><span style="background:#99ee99">{m, n} </span> &nbsp<i> m to n repetitions</i></li>
+    <li><span style="background:#99ee99">* </span> &nbsp<i> zero or more repetitions</i></li>
+    <li><span style="background:#99ee99">+ </span> &nbsp<i> one or more repetitions</i></li>
+    <li><span style="background:#99ee99">? </span> &nbsp<i> optional character</i></li>
+    <li><span style="background:#99ee99">\s </span> &nbsp<i> any white space</i></li>
+    <li><span style="background:#99ee99">\S </span> &nbsp<i> any non-white space</i></li>
+    <li><span style="background:#99ee99">^...$ </span> &nbsp<i> starts and ends</i></li>
+    <li><span style="background:#99ee99">(...) </span> &nbsp<i> capture group</i></li>
+    <li><span style="background:#99ee99">(a(bc)) </span> &nbsp<i> capture sub-group</i></li>
+    <li><span style="background:#99ee99">(.*) </span> &nbsp<i> capture all</i></li>
+    <li><span style="background:#99ee99">(abc|def) </span> &nbsp<i> matches abc or def</i></li>
+</ul>
+
+
+<h3>reference</h3>
+<ul>
+    <li><a href="https://ko.wikipedia.org/wiki/%EC%A0%95%EA%B7%9C_%ED%91%9C%ED%98%84%EC%8B%9D">정규 표현식 |wiki</a></li>
+    <li><a href="https://namu.wiki/w/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D">정규 표현식 |namu wiki</a></li>
+    <li><a href="http://j07051.tistory.com/554">정규 표현식(Regular expression) |수까락 블로그</a></li>
+    <li><a href="https://regexone.com/lesson/introduction_abcs">regular expression tutorials step by step |regexone.com</a></li>
+</ul>
+
+<span style="background:#99ee99"></span>
