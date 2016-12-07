@@ -1,0 +1,24 @@
+title: \b의 용도
+tag: 
+
+<h3><span style="background:#99ee99">&nbsp\b </span></h3>
+<p>
+    <span style="background:#99ee99">&nbsp\b </span>는 현재 output cursor를 한칸 앞으로 이동시키는 문자이다. 다음과 같은 예가 있다.
+</p>
+<blockquote style="background:#99ee99">
+    cout &lt&lt "asdf";     &nbsp&nbsp&nbsp// (1) <i>asdf</i>    
+    cout &lt&lt "1234";     &nbsp&nbsp// (2) <i>asdf1234</i> 
+</blockquote>
+<p>
+    (1)이 실행되면 콘솔에서 <i>asdf</i>가 출력된다. 출력을 계속하면 다음에 출력할 문자는 <i>f</i> 뒤부터 출력이 되는데, 이는 콘솔 상에서 마지막 출력의 다음 위치를 cursor가 가르키고 있다가 출력이 재개되면 cursor의 위치부터 출력을 계속하기 때문이다. 만약 되돌려진 커서의 위치에 기존 출력의 내용이 있다면 기존의 출력을 새로운 출력으로 덮어쓰게 된다.  
+</p>
+<blockquote style="background:#99ee99">
+    cout &lt&lt "asdf";     &nbsp&nbsp&nbsp// (3) <i>asdf</i>
+    cout &lt&lt '\b';    
+    cout &lt&lt "1234";     &nbsp&nbsp// (4) <i>asd1234</i> 
+</blockquote>
+
+<h3>reference</h3>
+<ul>
+    <li>-</li>
+</ul>
