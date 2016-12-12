@@ -1,0 +1,47 @@
+title: [EC++ 14] Think carefully about copying behavior in resource-managing classes.   
+tag: 
+
+<h3>Synopsis</h3>
+<p>
+    mutex를 사용하는 경우, <span style="background:#99ee99">&nbsplock(..)&nbsp</span>과 <span style="background:#99ee99">&nbspunlock(..)&nbsp</span>을 매 번 잊지 말아야 한다. 이를 해결하기 위해 RAII class의 사용을 고려해 볼 수 있다.
+</p>
+<script src="https://gist.github.com/devwoodo/3d0777c52f1acddd593ec8f2925e01bf.js"></script>
+
+<h3>RAII(Resource Acquisition Is Initialization) object의 copy behavior를 어떻게 정의해야 할 것인가</h3>
+<ul>
+    <li><b>Prohibit copy</b></li>
+    <p>
+        RAII 객체의 copy operation을 허용하지 않아야 하는 경우가 많이 있다. 예를 들어 underlying resource가 <span style="background:#99ee99">&nbspstd::mutex&nbsp</span>인 경우 copy operation은 의미가 없을 뿐 아니라, 잘못된 동작을 초래할 것이다.
+    </p>
+    <li><b>Reference-count the underlying resource</b></li>
+    <p>
+        동일한 객체가 여러번 사용되는 경우, 마지막 사용이 끝난 시점에서 resource가 release 되어야 한다. 이런 경우 적합한 방식이 reference-counting 방식으로, <span style="background:#99ee99">&nbspstd::shared_ptr&nbsp</span>와 같은 구현 예가 있다. 
+    </p>
+    <p>
+        만약 자신의 RAII class에 reference counting 방식을 도입하고 싶다면 referece counting을 직접 구현하지 않고, <span style="background:#99ee99">&nbspstd::shared_ptr&nbsp</span>을 멤버 필드로 정의하여 같은 효과를 볼 수 있다. Synopsis의 Lock class를 이러한 방식으로 구현할 수 있는데, 이 경우 RAII class의 Reference-count가 0이 되어도 mutex가 destruct되어선 안된다. 이 구현은 <span style="background:#99ee99">&nbspstd::shared_ptr&nbsp</span>의 deleter를 지정하여 해결할 수 있다.      
+    </p>
+    <script src="https://gist.github.com/devwoodo/5f8fd4a35bfa96f30e6777bf172fd1a7.js"></script>    
+
+    <li><b>Copy the underlying resource</b></li>
+    <p>
+        Resource-managing class를 사용하는 이유가 오직, heap 메모리의 자동 해제 뿐인 경우, 동일한 resource의 카피를 여러 개 보유할 수도 있다. 이런 경우 resource-managing class의 copy operation은 해당 객체의 underlying resource를 deep-copy 해야 한다.
+    </p>
+    <li><b>Transfer ownership of the underlying resource</b></li>
+    <p>
+        copy behavior가 해당 객체의 underlying resource의 ownership을 이양하는 경우를 생각해 볼 수 있다. 이러한 구현의 예로 <span style="background:#99ee99">&nbspstd::unique_ptr&nbsp</span>가 있다.
+    </p>
+</ul>
+
+
+<h3>Summary</h3>
+<ul>
+    <li>Copying an RAII object entails copying the resource it manages, so the copying behavior of the resource determines the copying behavior of the RAII object.</li>
+    <li>Common RAII class copying behaviors are disallowing copying and performing reference counting, but other behaviors are possible.</li>
+</ul>
+
+<h3>Reference</h3>
+<ul>
+    <li>Effective C++ by Scott Meyers</li>
+</ul>
+
+<span style="background:#99ee99">&nbsp&nbsp</span>
