@@ -1,0 +1,70 @@
+title: SQL DML(Data Manipulation Language)
+tag: 
+<h3>SELECT</h3>
+<ul>
+    <li>Syntax</li>
+    <blockquote style="background:#99ee99">
+        SELECT <i>[table.]attrib1</i>, <i>[table.]attrib2</i>, <b>...</b><br>
+        FROM <i>table1</i>, <i>table2</i>, <b>...</b><br>
+        [WHERE <i>search_condition</i>] <br>
+        [GROUP BY <i>attrib1</i>, <i>attrib2</i>, <b>...</b>] <br>
+        [HAVING <i>search_condition</i>] <br>
+        [ORDER BY <i>order_expression</i>[ASC|DESC]];
+    </blockquote>
+
+    <li><b>조건 연산자</b></li>
+    <ul>
+        <li>비교연산자 : =, =>, =<, >, <, IN 등</li>
+        <li>논리연산자 : AND, OR, NOT 등</li>
+        <li>LIKE연산자 : *(%), ?(_), # 등의 기호를 사용해 문자열을 검색</li>
+        <li>BETWEEN : 특정 값의 사이에 있는 튜플을 검색</li>
+    </ul>
+    <li><b>group funtions</b> : <span style="background:#99ee99">&nbspWHERE&nbsp</span>가 <span style="background:#99ee99">&nbspSELECT&nbsp</span>와 함께 사용되어 표시할 튜플을 선택하는 기준이 된다면, <span style="background:#99ee99">&nbspHAVING&nbsp</span>은 <span style="background:#99ee99">&nbspGROUP BY&nbsp</span>와 함께 사용되어 그룹을 묶는 기준이 된다. 하나의 그룹을 모집합으로 사용되는 함수로, 일반적으로 <span style="background:#99ee99">&nbspHAVING&nbsp</span></li>절과 함께 사용되어 그룹에 대한 조건을 지정한다.
+    <ul>
+        <li><span style="background:#99ee99">&nbspCOUNT(<i>attrib</i>)&nbsp</span> 그룹별 튜플의 수를 구한다</li>
+        <li><span style="background:#99ee99">&nbspMAX(<i>attrib</i>)&nbsp</span> 그룹별 최대값을 구한다</li>
+        <li><span style="background:#99ee99">&nbspMIN(<i>attrib</i>)&nbsp</span> 그룹별 최소값을 구한다</li>
+        <li><span style="background:#99ee99">&nbspSUM(<i>attrib</i>)&nbsp</span> 그룹별 합계를 구한다</li>
+        <li><span style="background:#99ee99">&nbspAVG(<i>attrib</i>)&nbsp</span> 그룹별 평균을 구한다</li>
+    </ul>
+</ul>
+
+<h3>INSERT</h3>
+<ul>
+    <li>Syntax</li>
+    <blockquote style="background:#99ee99">
+        INSERT INTO <i>table_name</i>(<i>attrib1</i>, <i>attrib2</i>, <b>...</b>)<br>
+        VALUES(<i>value1</i>, <i>value2</i>, <b>...</b>);
+    </blockquote>
+    <li>테이블의 모든 속성 값을 입력하는 경우에는 <i>table_name</i> 뒤의 속성명을 생략할 수 있다.</li>
+    <li><span style="background:#99ee99">&nbspSELECT&nbsp</span> 문을 사용하여 추출한 검색 결과를 삽입할 수도 있다.</li>
+</ul>
+
+<h3>DELETE</h3>
+<ul>
+    <li>Syntax</li>
+    <blockquote style="background:#99ee99">
+        DELETE FROM <i>table_name</i><br>
+        WHERE <i>condition</i>;
+    </blockquote>
+    <li><span style="background:#99ee99">&nbspWHERE&nbsp</span> 절을 생략하는 경우 해당 테이블의 모든 튜플이 삭제된다.</li>
+</ul>
+
+<h3>UPDATE</h3>
+<ul>
+    <li>Syntax</li>
+    <blockquote style="background:#99ee99">
+        UPDATE <i>table_name</i> <br>
+        SET <i>attrib1</i>=<i>value1</i>, <i>attrib2</i>=<i>value2</i>, <b>...</b><br>
+        WHERE <i>condition</i>;
+    </blockquote>
+</ul>
+
+<h3>reference</h3>
+<ul>
+    <li><a href="https://msdn.microsoft.com/en-us/library/ff848766.aspx">SQL |MSDN</a></li>
+    <li><a href="https://en.wikipedia.org/wiki/Select_(SQL)">SQL |wiki</a></li>
+    <li>2015 시나공 정보처리기사 필기</li>
+</ul>
+
+<span style="background:#99ee99">&nbsp&nbsp</span>
