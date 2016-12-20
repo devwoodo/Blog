@@ -1,0 +1,41 @@
+title: [EC++ 15] Provide access to raw resources in resource managing classes.    
+tag: 
+
+<p>     
+    resource leak 방지는 well-designed system의 필수 요소 중 하나이다. 이런 목적으로 resource 관리에 RAII class가 사용되지만, 때로는 resource에 직접 접근할 수 있는 방법이 필요하다. 많은 API가 자신의 parameter로 resource를 받아 이에 직접적으로 접근하기 때문에, 이런 API를 활용하기 위해 RAII class는 자신이 관리하는 resource에 직접 접근할 수 있는 수단을 제공해야 한다. 이러한 접근 수단에는 explicit, implicit 두가지 방식이 있다.
+</p>
+<ul>
+    <li><b>explicit</b></li>
+    <ul>
+        <li><span style="background:#99ee99">&nbspget()&nbsp</span> method 제공</li>
+    </ul>     
+    <li><b>implicit</b></li> 
+    <ul>
+        <li>overloaded derefencing operator(<span style="background:#99ee99">&nbsp-&gt&nbsp</span>), <span style="background:#99ee99">&nbsp*&nbsp</span>) 사용</li> 
+        <li>overloaded type conversion operator 사용</li>
+    </ul> 
+</ul>
+<p>
+    단, implicit conversion은 편리한 반면 오류의 원인이 되기도 하므로 신중하게 사용해야 한다. 아래의 프로그래밍 의도는 Font 객체의 복사였지만, 실제로는 f1이 FontHandle로 형변환 된 후 이것이 복사된다. font handle은 원래 Font class를 통해 관리되고 접근 가능해야 하지만, 실행 결과 이를 관리하는 RAII 객체를 통하지 않고도 직접적으로 접근이 가능해졌다. 
+</p>
+<script src="https://gist.github.com/devwoodo/46e24f7019881541791358dfe358f7ff.js"></script>
+
+<h3>Conclusion</h3>
+<p>
+    RAII class가 explicit conversion과 implicit conversion 등 어떤 access 방법을 제공할지는 해당 RAII class가 수행하는 작업과 RAII class가 사용되는 상황에 따라 달라진다. <b>가장 좋은 design 방법은 interface을 올바르게 사용하기 쉽고 잘못 사용하기는 어렵게 만드는 것이다.</b>     
+</p>
+<p>
+    RAII class 내부의 raw resource를 반환하는 메소드를 제공하는 것은 C++의 encapsulation 원칙을 어겨 C++의 원칙과 모순되는 것처럼 보인다. 그러나 RAII class의 목적은 raw resource의 관리이지 encapsulation이 아니다. 뿐만 아니라 <span style="background:#99ee99">&nbspstd::shared_ptr&nbsp</span>과 같은 RAII class는 true encapsulation으로 구현되어, underlying resource의 loose encapsulation과 결합하여 결과적으로 더 강한 encapsulation을 제공한다.        
+</p>
+
+
+<h3>Summary</h3>
+<ul>
+    <li>APIs often require access to raw resources, so each RAII class should offer a way to get at the resource it anages.</li>
+    <li>Access may be via explicit conversion or implicit conversion. In general, explicit conversion is safer, but implicit conversion is more convenient for clients.</li>
+</ul>
+
+<h3>Reference</h3>
+<ul>
+    <li>Effective C++ by Scott Meyers</li>
+</ul>
