@@ -1,0 +1,24 @@
+title: [EC++ 16] Use the same form in corresponding uses of <span style="background:#99ee99">&nbsp new &nbsp</span> and <span style="background:#99ee99">&nbsp delete &nbsp</span>   
+tag: 
+
+<ul>
+    <li>일반적으로 single object 와 array는 메모리 상의 구조가 다르다. single object는 메모리 상에 해당 object가 차지하는 공간만이 할당되지만, array는 메모리 상에 array의 크기를 먼저 기록하고 그 다음에 실제 object의 공간을 할당한다. </li>
+    <li>single object와 array는 메모리 상에 할당 되는 구조가 다르기 때문에 new와 delete를 사용하는 방법도 다르다. 따라서 single object와 array는 <span style="background:#99ee99">&nbsp new &nbsp</span>와 <span style="background:#99ee99">&nbsp delete &nbsp</span>를 사용하는 방법이 서로 다르며, 이를 뒤섞어 쓰면 안된다.</li>
+    <li>이런 차이점 때문에, 클래스 설계 시 어떤 클래스가 동적 할당한 메모리를 가르키는 포인터를 멤버로 가지면서 여러 버전의 constructor를 제공한다면, 모든 constructor가 해당 포인터를 초기화하는데 모두 같은 형태의 <span style="background:#99ee99">&nbsp new &nbsp</span> 를 사용하도록 주의해야 한다.</li>
+    <li><span style="background:#99ee99">&nbsp typedef &nbsp</span>를 사용할 때도 주의해야 한다. 예를 들어, array에 typedef를 사용하면 사용자는 typedef 된 자료형이 array인지 모르기 때문에 별 생각없이 <span style="background:#99ee99">&nbsp new &nbsp</span>-<span style="background:#99ee99">&nbsp delete &nbsp</span>를 사용할 수 있다. 이 경우, <span style="background:#99ee99">&nbsp new[] &nbsp</span>와 <span style="background:#99ee99">&nbsp delete &nbsp</span>를 같이 사용하는 것 같다.
+    </li>
+</ul>
+
+
+
+<h3>Summary</h3>
+<ul>
+    <li>If you use [] in a <span style="background:#99ee99">&nbsp new&nbsp</span> expression, you must use [] in the corresponding <span style="background:#99ee99">&nbsp delete&nbsp</span> expression, If you don't use [] in a <span style="background:#99ee99">&nbsp new&nbsp</span> expression, you mustn't use [] in the corresponding <span style="background:#99ee99">&nbsp delete&nbsp</span> expression.</li>
+</ul>
+
+<h3>Reference</h3>
+<ul>
+    <li>Effective C++ by Scott Meyers</li>
+</ul>
+
+<span style="background:#99ee99">&nbsp&nbsp</span>

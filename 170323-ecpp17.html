@@ -1,0 +1,23 @@
+title: [EC++ 17] Store <span style="background:#99ee99">&nbspnew&nbsp</span>ed objects in smart pointers in standalone statements.
+tag: 
+
+<blockquote style="background:#99ee99">
+    processWidget(std::tr1::shared_ptr<Widget>(new Widget), priority());
+</blockquote>
+<p>
+    위 코드는 1.<span style="background:#99ee99">&nbspnew&nbsp</span> 메모리 할당 -> <span style="background:#99ee99">&nbspshared_ptr&nbsp</span> ctor call -> <span style="background:#99ee99">&nbsppriority()&nbsp</span> call의 세 단계에 걸쳐 수행된다. 그런데 컴파일러에 의해 <span style="background:#99ee99">&nbspshared_ptr&nbsp</span> ctor call과 <span style="background:#99ee99">&nbsppriority()&nbsp</span> call의 순서가 바뀔 수 있는데, 이 경우 <span style="background:#99ee99">&nbsppriority()&nbsp</span>가 예외를 던지면 memory leak이 발생하게 된다. 따라서 <span style="background:#99ee99">&nbspnew&nbsp</span>ed object를 <span style="background:#99ee99">&nbsp shared_ptr&nbsp</span>에 넘겨주는 부분은 별도의 문장으로 따로 빼내는 것이 좋다.
+</p>
+
+
+<h3>Summary</h3>
+<ul>
+    <li>Store <span style="background:#99ee99">&nbspnew&nbsp</span>ed objects in smart pointers in standalone statements. Failure to do this can lead to subtle resource leaks when exceptions are thrown.
+    </li>
+</ul>
+
+<h3>Reference</h3>
+<ul>
+    <li>Effective C++ by Scott Meyers</li>
+</ul>
+
+<span style="background:#99ee99">&nbsp&nbsp</span>
