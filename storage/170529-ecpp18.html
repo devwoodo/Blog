@@ -1,0 +1,26 @@
+title: [EC++ 18] Make interfaces easy to use correctly and hard to use incorrectly.
+tag: 
+
+<ul>
+    <li>클라이언트에게 어떤 것을 해야하는 책임을 지우는 인터페이스는 잘못 사용되기 쉽다. 클라이언트는 책임을 종종 잊어버리기 때문이다.</li>
+    <li>cross-DLL problem</li>
+    <p>
+        어떤 오브젝트가 한 DLL에서 생성된 후 다른 DLL에서 삭제되는 경우 런타임 오류를 일으키는 현상. <span style="background:#99ee99">&nbspstd::shared_ptr&nbsp</span>은 deletor를 지정할 수 있는데, 이를 통해 cross-DLL problem을 피할 수 있다.
+    </p>
+</ul>
+
+
+<h3>Summary</h3>
+<ul>
+    <li>Good interfaces are easy to use correctly and hard to use incorrectoly. You should strive for these characteristics in all your interfaces.</li>
+    <li>Ways to facilitate correct use include consistency in interfaces and behavioral compatibility with built-in type.</li>
+    <li>Ways to prevent errors include creating new types, restricting operations on types, constraining object values, and eliminating client resource management responsibilities.</li>
+    <li><span style="background:#99ee99">&nbsptr1::shared_ptr&nbsp</span> supports custom deleters. This prevents the cross DLL problem, can be used to automatically unlock mutexes (item 14), etc.</li>
+</ul>
+
+<h3>Reference</h3>
+<ul>
+    <li>Effective C++ by Scott Meyers</li>
+</ul>
+
+<span style="background:#99ee99">&nbsp&nbsp</span>
