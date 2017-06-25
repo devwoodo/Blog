@@ -1,0 +1,58 @@
+title: [EC++ 19] Treat class design as type design
+tag: 
+
+<ul>
+    <li>다른 OOP 언어들과 마찬가지로, C++에서 새로운 클래스를 만든다는 것은 새로운 타입을 만드는 것과 같다.</li>
+    <li>좋은 타입의 조건</li>
+    <ul>
+        <li>자연스러운 문법</li>
+        <li>직관적인 문법</li>
+        <li>하나 이상의 효율적인 구현 방법이 존재</li>
+        <p>
+            클래스 멤버 함수를 어떻게 선언되었는가에 따라 그 멤버 함수의 성능이 영향을 받을 수 있다
+        </p>
+    </ul>
+</ul>
+
+<h3>효율적인 클래스를 디자인하기 위해 생각해봐야 할 점</h3>
+<ul>
+    <li>How should objects of your new type be created and destroyed?</li>
+    <li>How should object initialization differ frome object assignment?</li>
+    <li>What does it mean for objects of your new type to be passed by value?</li>
+    <li>What are the restrictions on legal values for your new type?</li>
+    <li>Does your new type fit into an inheritance graph?</li>
+    <p>
+        어떤 클래스를 상속 받으면 그 클래스의 디자인의 제한 요건을 따르게 되는데, 특히 virtual, non-virtual 과 같은 제한이 그렇다. 만약 자신이 설계한 클래스를 다른 클래스가 상속 받을 수 있도록 허용한다면 어떤 멤버가 virtual일지 결정해야하는데, 특히 destructor를 virtual 로 선언해야 한다.
+    </p>
+    <li>What kind of type conversions are allowed for your new type?</li>
+    <li>What operators and functions make sense for the new type?</li>
+    <p>
+        어떤 멤버 함수를 제공할 것인가?
+    </p>
+    <li>What standard founctions should be disallowed?</li>
+    <p>
+        무엇을 private으로 선언할 것인가?
+    </p>
+    <li>Whoshould have access to the members of your new type?</li>
+    <li>What is the "undeclared interface" of your new type?</li>
+    <p>
+        performance와 exception safety, 그리고 resource usage(locks, dynamic memory)에 있어 어떤 보장을 제공할 것인가?
+    </p>
+    <li>How general is your new type?</li>
+    <p>class가 아니라 class template을 만들어야 할 수도 있다.</p>
+    <li>Is a new type really what you need?</li>
+</ul>
+
+
+
+<h3>Summary</h3>
+<ul>
+    <li>Class design is type design. Before defining a new type, be sure to consider all the issues discussed in this Item.</li>
+</ul>
+
+<h3>Reference</h3>
+<ul>
+    <li>Effective C++ by Scott Meyers</li>
+</ul>
+
+<span style="background:#99ee99">&nbsp&nbsp</span>
