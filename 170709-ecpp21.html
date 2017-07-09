@@ -1,0 +1,24 @@
+title: [EC++ 21] Don't try to return a reference when you must return an object.
+tag: 
+
+<ul>
+    <li>reference는 존재하는 object를 가리키는 '이름'일 뿐임을 명심하라.</li>
+    <li>function은 heap, 혹은 stack 오직 2가지 방법으로만 새로운 object를 생성할 수 있다.</li>
+    <li>새로운 object를 리턴하는 제대로 된 방법은, object를 새로 만들어서 리턴하는 방법 뿐이다.</li>
+    <li>C++은 함수가 새로운 object를 생성하여 리턴할 때 컴파일러가 이런 일련의 과정을 최적화하는 것을 허용한다. </li>
+    <p>
+        ex. Ellsion, Return Value Optimization 참조
+    </p>
+    <li>만약 리턴 값으로 reference와 new object 사이에서 선택을 해야하는 경우가 생긴다면, 다른 부분에 대해서 고민할 것 없이, 의도된 대로 올바른 동작을 제공하는 방식을 택해라. 최적화 등 기타 골치 아픈 문제들은 컴파일러 제작자가 고민하도록 내버려둬라.</li>
+</ul>
+
+
+<h3>Summary</h3>
+<ul>
+    <li>Never return a pointer or reference to a local stack object, a reference to a heap-allocated object, or a pointer or reference to a local static object if there is a chance taht more than one such object will be needed. (Item4 provides an example of a design where returning a reference to a local static is reasonale, at least in single-threaded environments.)</li>
+</ul>
+
+<h3>Reference</h3>
+<ul>
+    <li>Effective C++ by Scott Meyers</li>
+</ul>
