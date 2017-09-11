@@ -1,0 +1,32 @@
+title: 
+tag:
+
+<h3>설치방법</h3>
+<ol>
+    <li>vcpkg 설치(참조)</li>
+    <li><span style="background:#99ee99">&nbsp.\vcpkg install boost boost:x64-windows&nbsp</span> 실행.</li>
+    <p>
+        자동으로 설치됨. 설치 위치는 ../vcpkg/installed/
+    </p>
+</ol>
+
+<h3>사용방법</h3>
+<ol>
+    <li>Configuration properties &gt C/C++ &gt General &gt Additional Include Directories 에 ../vcpkg/installed/<i>boost include dir</i>
+        추가 : header file include path 추가</li>
+    <li>Configuration properties &gt Linker &gt General &gt Additional Library dependency 에 </li>   //rev 데스크탑에서 VS 설정 확인하기
+    <li>boost 라이브러리의 빌드된 dll 파일을 프로젝트 디렉터리의 루트에 복사</li>     //rev 데스크탑에서 VS 설정 확인하기
+
+</ol>
+<blockquote style="background:#99ee99">
+    vcpkg에서 user-wide integration 설치했을 시 사용방법에 언급된 별도의 설정과정 없이 모든 프로젝트에서 바로 boost 사용 가능.
+</blockquote>
+
+<h3>reference</h3>
+<ul>
+    <li><a href="https://blogs.msdn.microsoft.com/vcblog/2017/05/19/using-c-coroutines-with-boost-c-libraries/">Using C++ Coroutines with Boost C++ Libraries [MSDN blog]</a></li>
+    <li><a href="http://psychoria.tistory.com/158">[Boost] Visual Studio 2013에 Boost 적용해서 개발하기 [냉정과 열정사이]</a></li>
+    <li><a href="https://msdn.microsoft.com/en-us/library/aa288739(v=vs.71).aspx"></a></li>
+</ul>
+
+<span style="background:#99ee99">&nbsp&nbsp</span>

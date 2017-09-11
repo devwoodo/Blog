@@ -1,0 +1,24 @@
+title: [EC++ 22] Declare data members private.
+tag: 
+
+<ul>
+    <li>Data member를 private으로 설정함으로써 data member로의 accessibility를 더욱 세밀하게 컨트롤할 수 있다.</li>
+    <li>Data member를 functional interface 뒤에 숨김으로써 다양한 구현상 이점(유연함)을 얻을 수 있다.</li>
+    <li>Data member를 클라이언트에게서 숨기고 encapsulate 함으로써 클래스 불변성을 보장할 수 있으며, 후에 implementation decision 변경 시 좀 더 자유로울 수 있다.</li>
+    <p>
+        <span style="background:#99ee99">&nbsppublic&nbsp</span>(또는 <span style="background:#99ee99">&nbspprotected&nbsp</span>)은 uncapsulated과 같은 의미로, 이는 해당 부분 및 연관된 부분에 대한 클래스 수정이 불가능함을 의미한다. 따라서, encapsulation의 관점에서는 사실상 <span style="background:#99ee99">&nbsppublic&nbsp</span>(<span style="background:#99ee99">&nbspprotected&nbsp</span>) 이거나 <span style="background:#99ee99">&nbspprivate&nbsp</span>, 단 두가지의 선택지만이 존재한다.
+    </p>
+</ul>
+
+
+<h3>Summary</h3>
+<ul>
+    <li>Declare data members <span style="background:#99ee99">&nbspprivate&nbsp</span>. It gives clients syntactically uniform access to data, affords fine-grained access control, allows invariants to be enforced, and offers class authors impementation flexibility.</li>
+    <li><span style="background:#99ee99">&nbspprotected&nbsp</span> is no more encapsulated than <span style="background:#99ee99">&nbsppublic&nbsp</span>.</li>
+
+</ul>
+
+<h3>Reference</h3>
+<ul>
+    <li>Effective C++ by Scott Meyers</li>
+</ul>

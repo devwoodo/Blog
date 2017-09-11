@@ -1,0 +1,38 @@
+title: vcpkg 소개 및 설치방법
+tag: programming, environment, visual studio
+
+<h3>vcpkg</h3> 
+<p>
+    Open source library를 쉽게 사용할 수 있도록 해주는 open source build tool. Visual studio extension.
+</p>
+
+<h3>필요 Spec</h3>
+<ul>
+    <li>Visual Studio 2015 이상</li>
+    <li>Windows 7 이상</li>
+    <li>Powershell</li>
+</ul>
+
+<h3>설치방법</h3>
+<ol>
+    <li>Clone from GitHub: git clone https://github.com/Microsoft/vcpkg</li>
+    <li>Run the bootstrap script in the vcpkg folder: powershell -exec bypass scripts\bootstrap.ps1</li>
+    <li>Now vcpkg.exe is in the root of the repository</li>
+    <li><span style="background:#99ee99">&nbsp./vcpkg integrate install&nbsp</span> 실행</li>
+    <p>
+        user wide integration. vcpkg를 통해 설치한 라이브러리를 모든 visual studio 프로젝트에서 별도의 include, linking 작업 없이 사용할 수 있게 해줌.
+    </p>
+</ol>
+
+<h3>사용법</h3>
+<ul>
+    <li>vcpkg를 통해 설치한(관리하는) open source library 목록 출력 : <span style="background:#99ee99">&nbsp./vcpkg list&nbsp</span> </li>
+    <li>vcpkg 도움말 출력 : <span style="background:#99ee99">&nbsp./vcpkg help&nbsp</span></li>
+</ul>
+
+<h3>reference</h3>
+<ul>
+    <li><a href="https://blogs.msdn.microsoft.com/vcblog/2016/09/19/vcpkg-a-tool-to-acquire-and-build-c-open-source-libraries-on-windows/">Vcpkg: a tool to acquire and build C++ open source libraries on Windows [MSDN blog]</a></li>
+</ul>
+
+<span style="background:#99ee99">&nbsp&nbsp</span>
